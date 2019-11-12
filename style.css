@@ -9,6 +9,12 @@ header .navbar {
     text-transform: uppercase;
     font-family: var(--font_monterrat);
 }
+header .navbar .signiu{
+    color: var(--textcolor) ;
+}
+header .navbar .signiu:hover{
+    color: var(--hovercolor) ;
+}
 header .navbar .navbar-brand{
     font-size: 30px;
 }
@@ -19,6 +25,9 @@ header .navbar .navbar-nav .nav-item a{
 
 header .navbar .navbar-nav .nav-item a:hover{
     color: var(--hovercolor);
+}
+.dropdown-item:active{
+    background-color: var(--light);
 }
 
 

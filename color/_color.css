@@ -12,5 +12,7 @@ html, body{
     /* màu title */
     --titlecolor:#101314;
     /* màu hover */
-    --hovercolor:rgb(163, 128, 128);
+    --hovercolor:#00b0ff;
+    /* màu active */
+    --activecolor:#0091ea;
 }
