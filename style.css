@@ -1,0 +1,25 @@
+@import url(./color/_color.css);
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+header .navbar {
+    text-transform: uppercase;
+    font-family: var(--font_monterrat);
+}
+header .navbar .navbar-brand{
+    font-size: 30px;
+}
+header .navbar .navbar-nav .nav-item a{
+    margin-right: 2rem;
+    color:var(--textcolor);
+}
+
+header .navbar .navbar-nav .nav-item a:hover{
+    color: var(--hovercolor);
+}
+
+
+

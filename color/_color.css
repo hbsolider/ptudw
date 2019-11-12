@@ -1,0 +1,16 @@
+
+html, body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root{
+    --font_bigshouder:'Big Shoulders Text', cursive;
+    --font_monterrat: font-family: 'Montserrat', sans-serif;
+    /* màu chữ */
+    --textcolor: #1d1919;
+    /* màu title */
+    --titlecolor:#101314;
+    /* màu hover */
+    --hovercolor:rgb(163, 128, 128);
+}
