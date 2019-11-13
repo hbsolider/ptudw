@@ -2,16 +2,14 @@
 
 body {
 	font-family: 'Roboto', sans-serif;
-	background: url(img/mountain.png) no-repeat center center fixed;
+	background: url(./img/mountain.png) no-repeat center center fixed;
 	background-size: cover;
 }
 .main-section {
-	margin: 0 auto;
-	margin-top: 130px;
+	margin:0 auto;
 	padding: 0;
 }
 .modal-content {
-    margin-top: 100px;
     background-color: #434e5a;
 	opacity: .8;
     padding-bottom: 40px;

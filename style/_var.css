@@ -7,12 +7,6 @@ html, body{
 :root{
     --font_bigshouder:'Big Shoulders Text', cursive;
     --font_monterrat: font-family: 'Montserrat', sans-serif;
-    /* màu chữ */
-    --textcolor: #1d1919;
-    /* màu title */
-    --titlecolor:#101314;
-    /* màu hover */
-    --hovercolor:#00b0ff;
-    /* màu active */
-    --activecolor:#0091ea;
+    --hovercolor: #d500f9;
+    --textcolor:#212121;
 }
