@@ -1,0 +1,21 @@
+<div class="cate-title">Sản phẩm nổi bật</div>
+<div class="row">
+    <% imgsrc.forEach(element => {%>
+    <div class="col-md-4">
+        <div class="card">
+            <img src=<%=element.src%> alt="one" class="card-img-top">
+            <div class="card-body">
+                <div class="card-title"><%=element.detail%></div>
+                <div class="card-text">
+                    <div class="3">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate ea nulla minus
+                        magni tempore, culpa dolorum quis velit quod fugiat molestias. Quo, repellat maiores recusandae
+                        modi veniam aspernatur molestias deserunt.</div>
+                </div>
+
+                <a name="" id="" class="btn btn-danger" href="#" role="button">more</a>
+            </div>
+
+        </div>
+    </div>
+    <%});%>
+</div>
