@@ -1,19 +1,26 @@
-<header>
+<header class="bd-navbar">
     <div class="container-full-fluid">
-        <nav class="navbar navbar-expand-md d-flex navbar-light shadow-sm">
-            <!-- brand -->
-            <a href="index" class="navbar-brand">auction</a>
+        <div class="logo text-center " id="logo">
+            <a href="index" class="logo-title">bidding</a>
+            <div class="detail">
+                <a href="index" class="logo-detail">the best choise for you</a>
+            </div>
+
+        </div>
+        <nav class="navbar navbar-expand-md navbar-light shadow-sm ">
+            <!-- img logo -->
+
             <button class="navbar-toggler" data-toggle="collapse" data-target="#navmenu">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <!-- menu -->
-            <div id="navmenu" class="collapse navbar-collapse">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a href="#" class="nav-link" active>trang chủ</a></li>
+            <div id="navmenu" class="collapse navbar-collapse justify-content-center">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a href="index" class="nav-link" active>trang chủ</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            sản phẩm
+                            danh mục
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="#">điện tử</a>
@@ -22,15 +29,20 @@
                             <a class="dropdown-item" href="#">khác</a>
                         </div>
                     </li>
-                    <li class="nav-item"><a href="" class="nav-link">contact</a></li>
-                    <li class="nav-item"><a href="" class="nav-link">about</a></li>
+                    <li class="nav-item"><a href="" class="nav-link">liên lạc</a></li>
+                    <li class="nav-item"><a href="" class="nav-link">giới thiệu</a></li>
                 </ul>
-                <span>
-                    <a href="signin" class="signiu">sign in</a>
-                    <span>/</span>
-                    <a href="signup" class="signiu">sign up</a>
-                </span>
             </div>
+            <span class="account">
+                <a href="signin" class="signiu">sign in</a>
+                <span>/</span>
+                <a href="signup" class="signiu">sign up</a>
+            </span>
+            <button type="button" class="btn cart">
+                <span class="badge badge-light">0</span>
+                <img src="images/cart.jpg" alt="">
+            </button>
         </nav>
+
     </div>
 </header>
