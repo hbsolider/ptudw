@@ -11,64 +11,119 @@
 
   <!-- sale -->
   <div class="header-info">
-      <div class="container">
-          <div class="row">
-              <div class="col-md-4">
-                  <div class="header-item">
-                      <img src="images/shiptruck.png" alt="">
-                      <p>Free shipping on orders over $1000 in VN</p>
-                  </div>
-              </div>
-              <div class="col-md-4 text-left text-lg-center">
-                  <div class="header-item">
-                      <img src="images/goldmedal.png" alt="">
-                      <p>20% Golden Member Discount</p>
-                  </div>
-              </div>
-              <div class="col-md-4 text-left text-xl-right">
-                  <div class="header-item">
-                  <img src="images/sale.png" alt="">
-                  <p>30% off on Vertu brand. Use code: 30OFF</p>
-              </div>
-              </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="header-item">
+            <img src="images/shiptruck.png" alt="">
+            <p>Free shipping on orders over $1000 in VN</p>
           </div>
+        </div>
+        <div class="col-md-4 text-left text-lg-center">
+          <div class="header-item">
+            <img src="images/goldmedal.png" alt="">
+            <p>20% Golden Member Discount</p>
+          </div>
+        </div>
+        <div class="col-md-4 text-left text-xl-right">
+          <div class="header-item">
+            <img src="images/sale.png" alt="">
+            <p>30% off on Vertu brand. Use code: 30OFF</p>
+          </div>
+        </div>
       </div>
-  </div>
-  <!-- notice -->
-  <div class="container">
-    <div class="notice-item mt-4">
-      
     </div>
   </div>
   <!-- banner -->
+  <% include layout/banner%>
+  <!-- notice -->
   <div class="container">
-    <% include layout/card_bid%>
-    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt illum aliquid incidunt reprehenderit cum
-    consequuntur, fugit ullam consequatur non dolorum voluptatum, rem veritatis iste quam maxime vel alias ab ex.
-    Exercitationem, minus non in voluptates, amet porro accusantium ex cupiditate blanditiis assumenda, rerum quo
-    excepturi veniam repellat sit quidem? Sint fugit a neque necessitatibus dignissimos, quos eius quisquam facere unde?
-    Odio, laborum, illo amet impedit esse quo perferendis assumenda vitae ducimus veniam qui, voluptates similique?
-    Ratione reiciendis explicabo rem, amet inventore cumque dolores repudiandae doloribus eligendi fugit, debitis
-    corporis! Iure.
-    Amet vel magnam quis consequuntur soluta provident, quod aliquid quam eos, recusandae similique dignissimos
-    accusantium dicta ab incidunt corporis? Cumque illo earum explicabo iure quasi nulla labore aliquam possimus non?
-    Quia beatae ex quam quaerat dolor aliquid consequuntur architecto natus, consectetur recusandae ipsum ipsam. Rem
-    saepe quia enim alias exercitationem fugiat omnis repudiandae corporis expedita, molestiae pariatur praesentium
-    consequatur? Explicabo?
-    Blanditiis porro quasi at optio non esse assumenda fugiat doloribus maiores commodi laboriosam doloremque nostrum
-    quaerat nulla dicta rerum est accusamus sapiente, ducimus, nisi, recusandae illum. Error asperiores temporibus quis?
-    Similique tempora odio unde ab omnis repellat quidem sint. Perferendis magni exercitationem harum quia ipsa sit,
-    quisquam, architecto mollitia vero nihil omnis totam ipsam, alias in minus deleniti distinctio error!
-    Nihil odio ipsa eius aut! Esse quidem, fuga assumenda eligendi praesentium maxime harum perferendis facilis est
-    error, molestias ipsum, atque deserunt. Reiciendis autem id at praesentium, atque illum alias rem!
-    Ullam dolorem eligendi minima nesciunt voluptate nobis odio harum! Eius voluptatum, eaque numquam inventore sint, in
-    minima vel adipisci quaerat corporis deleniti blanditiis autem aliquam a officiis non laudantium aspernatur.
-    Iure amet reiciendis ipsam consequatur cumque, esse quibusdam odit laborum officia quo deleniti, necessitatibus
-    dolore sint fugit rem dolor enim. Totam vel debitis eaque, nulla hic ea accusantium sunt fuga.
+    <!-- sản phẩm gần kết thúc -->
+    <div class="endding-product mt-4">
+      <div class="row">
+        <div class="col">
+          <div class="h2">Running out</div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card text-left">
+            <div class="card-view d-flex justify-content-center">
+                <img class="card-img-top" src="images/one.jpg" alt="">
+                <div class="timedown text-center p-2"><div class="date"></div></div>
+            </div>
+            
+            <div class="card-body">
+              <h4 class="card-title">Title</h4>
+              <h5 class="card-text">Current price: <span class="cp">99999</span></h5>
+              <h5 class="card-text">Original price: <span class="op">9999</span></h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- fearture -->
+    <div class="fearture-dad mt-4 mb-2">
+      <div class="row">
+        <div class="col">
+          <div class="h2">Fearture</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="fearture-item">
+            <img src="images/phone.jpg" alt="phone" class="">
+            <div class="overlay">
+              <h2>Phone</h2>
+              <p><a href="">Start bidding</a></p>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col">
+              <div class="fearture-item ">
+                <img src="images/laptop.jpg" alt="phone" class="">
+                <div class="overlay">
+                  <h2>Laptop</h2>
+                  <p><a href="">Start bidding</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="fearture-item ">
+                <img src="images/other.png" alt="other">
+                <div class="overlay">
+                  <h2>More</h2>
+                  <p><a href="">Click here</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="row mt-4">
+        <div class="col-lg-12">
+          <div class="fearture-item">
+            <img src="images/desktop.jpg" alt="phone" class="">
+            <div class="overlay">
+              <h2>Desktop & PC</h2>
+              <p><a href="">Start bidding</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
+
   <!-- script -->
- 
+
   <% include layout/b4_script %>
 </body>
 
