@@ -13,10 +13,15 @@
             <form>
               <div class="form-row">
                 <div class="col-md-12">
-                  <input type="text" name="username" class="form-control form-control-lg flat-input" placeholder="username">
+                  <input type="text" name="username" class="form-control form-control-lg flat-input" placeholder="Username">
                 </div>
+
                 <div class="col-md-12">
-                  <input type="password" name="password" class="form-control form-control-lg flat-input" placeholder="password">
+                  <input type="number" name="number_phone" class="form-control form-control-lg flat-input" placeholder="Number phone">
+                </div>
+
+                <div class="col-md-12">
+                  <input type="password" name="password" class="form-control form-control-lg flat-input" placeholder="Type password" pattern="[A-Za-z][A-Za-z0-9]*[0-9][A-Za-z0-9]*" title="The password must begin with a letter and contain at least one digit" required>
                 </div>
 
                 <div class="col-md-12">
