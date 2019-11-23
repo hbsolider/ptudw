@@ -35,6 +35,7 @@ addProduct(exPrice,"images/prox.jpg","Suface Pro X","5000USD","220USD","18/11/20
 addProduct(exPrice,"images/acernitro2019.jpg","Acer Nitro 2019","42000USD","220USD","18/11/2019","G-D2");
 addProduct(exPrice,"images/alien42.jpg","Alien Ware Laptop","42000USD","220USD","18/11/2019","G-D2");
 /* GET home page. */
+global.data=exPrice;
 router.get('/', function (req, res, next) {
   res.render('index', {
     title: 'Home',

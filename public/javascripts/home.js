@@ -89,7 +89,9 @@ function updateDate(time) {
     }
     return d;
 }
-
+$('.navbarDropdown').click(function () {
+    console.log("abc");
+});
 function clear(array) {
     while (array.length) {
         array.pop();
@@ -109,3 +111,4 @@ pik = setInterval(function () {
         $(this).html(time[index]);
     });
 }, 1000)
+
