@@ -1,23 +1,44 @@
 var express = require('express');
 var router = express.Router();
 //sản phẩm nổi bật
-function element(src,detail,content){
+products=[];
+oneproduct=function(src,title,cp,op,dp,bidder){
   this.src=src;
-  this.detail=detail;
-  this.content=content;
+  this.title=title;
+  this.cp=cp;
+  this.op=op;
+  this.dp=dp;
+  this.bidder=bidder;
 }
-var imgsrc=[];
-function add_imgsrc(src,detail,content){
-  temp=new element(src,detail,content);
-  imgsrc.push(temp);
+function addProduct(productRoot,src,title,cp,op,dp,bidder){
+  temp=new oneproduct(src,title,cp,op,dp,bidder);
+  productRoot.push(temp);
 }
-add_imgsrc("images/one.jpg","title 1","");
-add_imgsrc("images/two.jpg","title 2","");
+addProduct(products,"images/iphone11.jpg","Iphone 11","4000USD","200USD","18/11/2019","G-D");
+addProduct(products,"images/macpro2019.jpg","MacBook Air 2019","5000USD","220USD","18/11/2019","G-D2");
+addProduct(products,"images/nokia7.2.jpg","Nokia 7.2","5000USD","220USD","18/11/2019","G-D2");
+addProduct(products,"images/prox.jpg","Suface Pro X","5000USD","220USD","18/11/2019","G-D2");
+addProduct(products,"images/s10.jpg","Samsung Galaxy S10+","5000USD","220USD","18/11/2019","G-D2");
+user=0;
+
+hotproduct=[];
+addProduct(hotproduct,"images/rogphone.jpg","Asus ROG Gaming","5000USD","220USD","18/11/2019","G-D2");
+addProduct(hotproduct,"images/alien42.jpg","Alien Ware Laptop","42000USD","220USD","18/11/2019","G-D2");
+addProduct(hotproduct,"images/lggram.jpg","LG Gram 17","2000USD","220USD","18/11/2019","G-D2");
+addProduct(hotproduct,"images/acernitro2019.jpg","Acer Nitro 2019","42000USD","220USD","18/11/2019","G-D2");
+addProduct(hotproduct,"images/vertu.jpg","Vertu Signature S Yellow Gold","12000USD","220USD","18/11/2019","G-D2");
+
+exPrice=[];
+addProduct(exPrice,"images/vertu.jpg","Vertu Signature S Yellow Gold","12000USD","220USD","18/11/2019","G-D2");
+addProduct(exPrice,"images/macpro2019.jpg","MacBook Air 2019","5000USD","220USD","18/11/2019","G-D2");
+addProduct(exPrice,"images/prox.jpg","Suface Pro X","5000USD","220USD","18/11/2019","G-D2");
+addProduct(exPrice,"images/acernitro2019.jpg","Acer Nitro 2019","42000USD","220USD","18/11/2019","G-D2");
+addProduct(exPrice,"images/alien42.jpg","Alien Ware Laptop","42000USD","220USD","18/11/2019","G-D2");
 /* GET home page. */
 router.get('/', function (req, res, next) {
   res.render('index', {
     title: 'Home',
-    imgsrc: imgsrc
+    timeout: products,
   });
 });
 

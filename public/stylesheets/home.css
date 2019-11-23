@@ -165,7 +165,7 @@ header .navbar .signiu:hover {
 
 .card {
     padding: 1rem 0;
-    max-height: 600px;
+    max-height: 700px;
     border: none;
 }
 
@@ -173,7 +173,12 @@ header .navbar .signiu:hover {
     padding: 0;
     overflow: hidden;
 }
-
+h6{
+    margin-bottom: 0px !important;
+}
+.datepost{
+    opacity: 0.9;
+}
 .card .card-img-top {
     object-fit: cover;
     height: 300px;
@@ -182,6 +187,7 @@ header .navbar .signiu:hover {
 .card .card-title {
     text-transform: uppercase;
     font-weight: bold;
+    letter-spacing: 2px;
 }
 .card-view{
     position: relative;
@@ -193,23 +199,17 @@ header .navbar .signiu:hover {
     background-color: rgba(255, 255, 255, 0.5);
 }
 .timedown .date{
+    color:red;
     font-size:1.5rem;
     letter-spacing: 1px;
     font-weight: 500;
 }
-
-/* notice item */
-.notice-item img {
-    width: 100%;
-    height: 100%;
+.cp{
+    color:red;
 }
-
-.mb-3 {
-    font-size: 75px;
-    margin-top: 50px;
-    text-align: center;
+.opct-90{
+    opacity: 0.9;
 }
-
 /* banner */
 .carousel-inner img {
     width: 100%;

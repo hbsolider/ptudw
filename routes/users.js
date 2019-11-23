@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
-
+var a="bảo đẹp trai";
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+  req.params({"bao":"deptrai"});
+  console.log(req.params);
 });
-
 module.exports = router;

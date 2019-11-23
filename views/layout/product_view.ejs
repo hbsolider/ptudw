@@ -1,0 +1,46 @@
+<div class="row">
+    <% tempp.forEach(function(thing){ %>
+    <div class="col-lg-4 mt-2">
+        <div class="card text-left">
+            <div class="card-view ">
+                <img class="card-img-top" src=<%= thing.src %> alt="">
+                <div class="timedown text-center p-2">
+                    <div class="date"></div>
+                </div>
+                <div class="seemore">
+                    <div class="pb-4"><a href="">Add to cart</a></div>
+                    <div class="pt-4"><a href="">View More</a></div>
+                </div>
+            </div>
+
+            <div class="card-body m-2">
+                <h4 class="card-title"><%= thing.title %></h4>
+                <div class="row">
+                    <div class="col">
+                        <h5 class="card-text d-flex">Current price:
+                            <span class="cp mr-auto ml-1"><%= thing.cp %></span>
+                            <span class="d-flex opct-90">
+                                <span>By: </span>
+                                <h6 class="bidder pt-1">***<%= thing.bidder %></h6>
+                            </span>
+                        </h5>
+
+                    </div>
+                </div>
+
+                <div class="row mt-2">
+                    <div class="col">
+                        <h6 class="card-text">Original price: <span class="op"><%= thing.op %></span></h6>
+                        <div class="datepost float-right d-flex mt-2">
+                            <div>Date post:</div>
+                            <div class="dp ml-2"><%= thing.dp %></div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <% }) %>
+</div>
