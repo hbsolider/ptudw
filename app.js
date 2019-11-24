@@ -8,6 +8,8 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var signupRouter=require('./routes/signup');
 var signinRouter=require('./routes/signin');
+var aboutRouter = require('./routes/about');
+var contactRouter = require('./routes/contact');
 var categoryRouter=require('./routes/category');
 
 var app = express();
@@ -28,6 +30,8 @@ app.use('/users', usersRouter);
 app.use('/index', indexRouter);
 app.use('/signin',signinRouter);
 app.use('/signup',signupRouter);
+app.use('/about', aboutRouter);
+app.use('/contact',contactRouter);
 app.use('/category',categoryRouter);
 //
 //
