@@ -30,13 +30,14 @@ var mDate = function (h, m, s) {
 }
 let d;
 dateArray = [];
-for (i = 0; i < 15; i++) {
-    let hour = Math.floor(Math.random() * 59);
-    let minute = Math.floor(Math.random() * 59);
-    let second = Math.floor(Math.random() * 59);
-    date = new mDate(hour, minute, second);
-    dateArray.push(date);
+var inputs = $(".date");
+for(var i = 0; i < inputs.length; i++){
+    temp=$(inputs[i]).html().split(":");
+        temp1=new mDate(parseInt(temp[0]),parseInt(temp[1]),parseInt(temp[2]));
+    
+    dateArray.push(temp1);
 }
+
 
 function updateDate(time) {
     if(time.h<0){
@@ -89,9 +90,6 @@ function updateDate(time) {
     }
     return d;
 }
-$('.navbarDropdown').click(function () {
-    console.log("abc");
-});
 function clear(array) {
     while (array.length) {
         array.pop();
@@ -100,15 +98,23 @@ function clear(array) {
 pik = setInterval(function () {
     time = [];
     clear(time);
-    for (i = 0; i < 15; i++) {
+    for (i = 0; i < dateArray.length; i++) {
         let temp = updateDate(dateArray[i]);
-        if (temp === "00:00:00") {}
         time.push(temp);
 
     }
+    check=0;
+    for (i = 0; i < dateArray.length; i++) {
+        if(time[i]==="00:00:00"){
+            check++;
+        }
+        if(check===dateArray.length){
+            clearInterval(pik);
+        }
+    }
     $(".date").each(function (index, element) {
         // element == this
-        $(this).html(time[index]);
+        $(this).text(time[index]);
     });
 }, 1000)
 

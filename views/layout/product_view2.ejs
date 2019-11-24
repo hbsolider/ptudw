@@ -1,0 +1,47 @@
+<% temp=global.data %>
+<% index=0, number=4%>
+<%for(var i=0;i<Math.ceil(global.data.length)/4;i++){%>
+<div class="row">
+    <%if(global.data.length-index<4){%>
+        <% number=global.data.length-index %>
+        <%}%>
+    <% for (var k = index; k < index+number; k++) { %>
+    <div class="col-md-3 col-sm-3 mt-2">
+        <div class="card text-left">
+            <div class="card-view ">
+                <img class="card-img-top" src=<%= temp[k].src %> alt="">
+                <div class="timedown text-center p-2">
+                    <div class="date"><%= temp[k].time %></div>
+                </div>
+                <div class="seemore">
+                    <div class="pb-4"><a href="">Add to cart</a></div>
+                    <div class="pt-4"><a href="category/demo">View More</a></div>
+                </div>
+            </div>
+
+            <div class="card-body m-2">
+                <h4 class="card-title"><%= temp[k].title %></h4>
+                <div class="row">
+                    <div class="col">
+                        <h6 class="card-text">Current Price <span class="cp"><%= temp[k].cp %></span></h6>
+                    </div>
+                </div>
+
+                <div class="row mt-2">
+                    <div class="col">
+                        <h6 class="card-text">Original price: <span class="op"><%= temp[k].op %></span></h6>
+                        <div class="datepost float-right d-flex mt-2">
+                            <div>Date post:</div>
+                            <div class="dp ml-2"><%= temp[k].dp %></div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <% } %>
+</div>
+<% index+=4%>
+<%}%>

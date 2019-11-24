@@ -2,44 +2,42 @@ var express = require('express');
 var router = express.Router();
 //sản phẩm nổi bật
 products=[];
-oneproduct=function(src,title,cp,op,dp,bidder){
-  this.src=src;
+oneproduct=function(src,title,cp,op,dp,bidder,time){
+  this.src="images/"+src+".jpg";
   this.title=title;
-  this.cp=cp;
-  this.op=op;
+  this.cp=cp+"USD";
+  this.op=op+"USD";
   this.dp=dp;
-  this.bidder=bidder;
+  this.bidder="***"+bidder;
+  this.time=time;
 }
-function addProduct(productRoot,src,title,cp,op,dp,bidder){
-  temp=new oneproduct(src,title,cp,op,dp,bidder);
+glob=[];
+function addProduct(productRoot,src,title,cp,op,dp,bidder,time){
+  temp=new oneproduct(src,title,cp,op,dp,bidder,time);
   productRoot.push(temp);
+  glob.push(temp);
 }
-addProduct(products,"images/iphone11.jpg","Iphone 11","4000USD","200USD","18/11/2019","G-D");
-addProduct(products,"images/macpro2019.jpg","MacBook Air 2019","5000USD","220USD","18/11/2019","G-D2");
-addProduct(products,"images/nokia7.2.jpg","Nokia 7.2","5000USD","220USD","18/11/2019","G-D2");
-addProduct(products,"images/prox.jpg","Suface Pro X","5000USD","220USD","18/11/2019","G-D2");
-addProduct(products,"images/s10.jpg","Samsung Galaxy S10+","5000USD","220USD","18/11/2019","G-D2");
-user=0;
+phone=[];
+addProduct(phone,"iphone11","iphone 11","2500","1000","20/11/2019","GD","05:06:07");
+addProduct(phone,"nokia7.2","nokia 7.2","1000","800","21/11/2018","GD","06:08:09");
+addProduct(phone,"s10","samsung galaxy s10","2000","1500","22/12/2011","GD","02:01:03");
+addProduct(phone,"vertu","Vertu Limited Edition","15000","10000","23/11/2019","GD","08:09:01");
+addProduct(phone,"rogphone","Asus ROG Phone","1920","1000","11/08/1211","GD","06:09:10");
 
-hotproduct=[];
-addProduct(hotproduct,"images/rogphone.jpg","Asus ROG Gaming","5000USD","220USD","18/11/2019","G-D2");
-addProduct(hotproduct,"images/alien42.jpg","Alien Ware Laptop","42000USD","220USD","18/11/2019","G-D2");
-addProduct(hotproduct,"images/lggram.jpg","LG Gram 17","2000USD","220USD","18/11/2019","G-D2");
-addProduct(hotproduct,"images/acernitro2019.jpg","Acer Nitro 2019","42000USD","220USD","18/11/2019","G-D2");
-addProduct(hotproduct,"images/vertu.jpg","Vertu Signature S Yellow Gold","12000USD","220USD","18/11/2019","G-D2");
+laptop=[];
+addProduct(laptop,"macpro2019","Macbook Pro 2019","8000","7000","22/11/2018","GD","05:03:11");
+addProduct(laptop,"lggram","LG gram 14","5000","4000","23/10/1222","GD","05:11:59");
+addProduct(laptop,"prox","Suface Pro X","99999","9999","02/12/1999","GD","12:22:35");
+addProduct(laptop,"alien42","Alien Ware","99299","2999","02/12/2799","GD","12:22:11");
+addProduct(laptop,"acernitro2019","Acer Nitro 2019","1000","800","03/08/2000","GD","11:11:11");
 
-exPrice=[];
-addProduct(exPrice,"images/vertu.jpg","Vertu Signature S Yellow Gold","12000USD","220USD","18/11/2019","G-D2");
-addProduct(exPrice,"images/macpro2019.jpg","MacBook Air 2019","5000USD","220USD","18/11/2019","G-D2");
-addProduct(exPrice,"images/prox.jpg","Suface Pro X","5000USD","220USD","18/11/2019","G-D2");
-addProduct(exPrice,"images/acernitro2019.jpg","Acer Nitro 2019","42000USD","220USD","18/11/2019","G-D2");
-addProduct(exPrice,"images/alien42.jpg","Alien Ware Laptop","42000USD","220USD","18/11/2019","G-D2");
-/* GET home page. */
-global.data=exPrice;
+hotproduct=phone;
+exPrice=laptop;
+products=phone;
+global.data=glob;
 router.get('/', function (req, res, next) {
   res.render('index', {
-    title: 'Home',
-    timeout: products,
+    title: 'Home'
   });
 });
 

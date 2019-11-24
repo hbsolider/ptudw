@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include layout/head %>
+    <link rel="stylesheet" href="../stylesheets/demo.css">
+</head>
+
+<body>
+    <% include layout/navbar%>
+    <div class="container">
+        <div class="row mt-4">
+            <div class="col-lg-6">
+                <div class="row">
+                    <div class="col-lg">
+                        <img src="../images/iphone11.jpg" alt="">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg">
+                        <ul class="list-unstyled d-flex">
+                            <li class="item"><img src="../images/iphone11.jpg" alt=""></li>
+                            <li class="item"><img src="../images/ip111.jpg" alt=""></li>
+                            <li class="item"><img src="../images/ip112.jpg" alt=""></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="row">
+                    <div class="col-lg">
+                        <div class="title text-uppercase">
+                            <div class="h1">Iphone 11</div>
+                        </div>
+                        <div class="price-cp mt-4">
+                            Current price: <span class="price">2500 USD</span>
+                        </div>
+                        <div class="price-op">
+                            Orignal price: <span class="price">2000 USD</span>
+                        </div>
+                        <div class="detail mt-4">
+                            <div class="detail-title">
+                                Detail:
+                            </div>
+                            <div class="detail-content">
+                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quos, quod ratione!
+                                Reprehenderit, sint tempore ab delectus nulla perferendis, quisquam sit itaque ut hic
+                                corporis sequi saepe accusantium eum soluta aut.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col-lg">
+                        <div class="quantity mr-4">
+                            <input type="number" min="0" max="9999999" step="100" value="0">
+                        </div>
+                        <div class="but d-flex justify-content-between">
+                            <button class="bid btn">Start Bidding</button>
+                            <button class="add btn ">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% include layout/b4_script%>
+    <script>
+        $('.logo').hide();
+        jQuery('<div class="quantity-nav"><div class="quantity-button quantity-up">+</div><div class="quantity-button quantity-down">-</div></div>').insertAfter('.quantity input');
+    jQuery('.quantity').each(function() {
+      var spinner = jQuery(this),
+        input = spinner.find('input[type="number"]'),
+        btnUp = spinner.find('.quantity-up'),
+        btnDown = spinner.find('.quantity-down'),
+        min = input.attr('min'),
+        max = input.attr('max');
+
+      btnUp.click(function() {
+        var oldValue = parseFloat(input.val());
+        if (oldValue >= max) {
+          var newVal = oldValue;
+        } else {
+          var newVal = oldValue + 100;
+        }
+        spinner.find("input").val(newVal);
+        spinner.find("input").trigger("change");
+      });
+
+      btnDown.click(function() {
+        var oldValue = parseFloat(input.val());
+        if (oldValue <= min) {
+          var newVal = oldValue;
+        } else {
+          var newVal = oldValue - 100;
+        }
+        spinner.find("input").val(newVal);
+        spinner.find("input").trigger("change");
+      });
+
+    });
+    </script>
+</body>
+
+</html>
