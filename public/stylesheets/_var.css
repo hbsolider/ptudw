@@ -7,7 +7,10 @@ html, body{
 :root{
     --font_bigshouder:'Big Shoulders Text', cursive;
     --font_monterrat: font-family: 'Montserrat', sans-serif;
-    --hovercolor: #7e57c2;
+    --hovercolor: rgba(237, 62, 62,0.9);
     --bgcolor:#fafafa;
     --textcolor:#212121;
+}
+.dropdown:hover .dropdown-menu{
+    display: block;
 }

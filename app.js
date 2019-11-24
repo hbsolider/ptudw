@@ -10,6 +10,8 @@ var signupRouter=require('./routes/signup');
 var signinRouter=require('./routes/signin');
 var aboutRouter = require('./routes/about');
 var contactRouter = require('./routes/contact');
+var categoryRouter=require('./routes/category');
+
 var app = express();
 
 // view engine setup
@@ -30,6 +32,7 @@ app.use('/signin',signinRouter);
 app.use('/signup',signupRouter);
 app.use('/about', aboutRouter);
 app.use('/contact',contactRouter);
+app.use('/category',categoryRouter);
 //
 //
 
