@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <%include layout/head %>
+    
 </head>
 <body>
     <%include layout/navbar %>
@@ -10,22 +11,24 @@
     <div class="container">
         <div class="row justify-content-md-center">
           <div class="col-md-6 col-md-auto login-box">
-            <form>
+            <form onsubmit="return validateForm()">
               <div class="form-row">
                 <div class="col-md-12">
-                  <input type="text" name="username" class="form-control form-control-lg flat-input" placeholder="Username">
+                  <input type="text" name="username" class="form-control form-control-lg flat-input" placeholder="Username" required>
                 </div>
-
+                <div class="col-md-12">
+                  <input type="text" name="email" id="email" class="form-control form-control-lg flat-input" placeholder="Email" required>
+                </div>
                 <div class="col-md-12">
                   <input type="number" name="number_phone" class="form-control form-control-lg flat-input" placeholder="Number phone">
                 </div>
 
                 <div class="col-md-12">
-                  <input type="password" name="password" class="form-control form-control-lg flat-input" placeholder="Type password" pattern="[A-Za-z][A-Za-z0-9]*[0-9][A-Za-z0-9]*" title="The password must begin with a letter and contain at least one digit" required>
+                  <input type="password" name="password" id="password" class="form-control form-control-lg flat-input" placeholder="Type password" pattern="[A-Za-z][A-Za-z0-9]*[0-9][A-Za-z0-9]*" title="The password must begin with a letter and contain at least one digit" required>
                 </div>
 
                 <div class="col-md-12">
-                  <input type="password" name="valid_password" class="form-control form-control-lg flat-input" placeholder="Type password again">
+                  <input type="password" name="valid_password" id="valid_password" class="form-control form-control-lg flat-input" placeholder="Type password again">
                 </div>
                 <button type="submit" class="btn btn-lg btn-block btn-login">Register</button>
               </div>
@@ -33,5 +36,6 @@
           </div>
         </div>
       </div>
+      <script src="javascripts/sign_up.js"></script>
 </body>
 </html>
