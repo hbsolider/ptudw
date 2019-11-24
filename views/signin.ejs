@@ -1,33 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <%include layout/head %>
-</head>
-<body>
-    <%include layout/navbar %>
-    <h1 class="h1 mb-3">Sign in</h1>
 
-    <div class="container">
-        <div class="row justify-content-md-center">
-          <div class="col-md-6 col-md-auto login-box">
-            <form>
-              <div class="form-row">
-                <div class="col-md-12">
-                  <input type="text" name="username" class="form-control form-control-lg flat-input" placeholder="Username" required>
-                </div>
-                <div class="col-md-12">
-                  <input type="password" name="password" class="form-control form-control-lg flat-input" placeholder="Type Password" required>
-                </div>
-                <button type="submit" class="btn btn-lg btn-block btn-login">Login</button>
-              </div>
-            </form>
-            <p class="h5 mb-4">or</p>
-            <button class="loginBtn loginBtn--facebook"> Login with Facebook </button>
-            <button class="loginBtn loginBtn--google">Login with Google</button>
-            
-            <pre style="text-align: center;margin-top: 20px;" >Don't have an account?  <a href="signup">Register</a></pre>
+<head>
+  <%include layout/head %>
+</head>
+
+<body>
+  <%include layout/navbar %>
+  <h1 class="h1 mb-3">Sign in</h1>
+
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="col-md-6 col-md-auto login-box">
+        <form>
+          <div class="form-row">
+            <div class="col-md-12">
+              <input type="text" name="username" class="form-control form-control-lg flat-input" placeholder="Username"
+                required>
+            </div>
+            <div class="col-md-12">
+              <input type="password" name="password" class="form-control form-control-lg flat-input"
+                placeholder="Type Password" required>
+            </div>
+            <button type="submit" class="btn btn-lg btn-block btn-login">Login</button>
           </div>
-        </div>
+        </form>
+        <p class="h5 mb-4">or</p>
+        <button class="loginBtn loginBtn--facebook"> Login with Facebook </button>
+        <button class="loginBtn loginBtn--google">Login with Google</button>
+
+        <pre style="text-align: center;margin-top: 20px;">Don't have an account?  <a href="signup">Register</a></pre>
       </div>
+    </div>
+  </div>
+  <% include layout/b4_script %>
 </body>
+
 </html>
