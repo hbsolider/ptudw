@@ -1,16 +1,7 @@
 var express=require('express');
 var router=express();
-abd=[];
-abc=function(i){
-    this.i=i;
-}
-function add(i){
-    temp=new abc(i);
-    abd.push(temp);
-}
-for(i=0;i<10;i++){
-    add(i);
-}
+
+
 router.get("/",function(req,res,next){
     res.render("category",{title:"Colection"});
 })

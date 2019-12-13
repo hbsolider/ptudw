@@ -1,0 +1,37 @@
+<% layout('_layouts/main') -%>
+<div class="container mt-4  ">
+    <nav aria-label="breadcrumb ">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Collections</li>
+        </ol>
+    </nav>
+</div>
+<div class="container">
+    <div class="row mt-2">
+        <div class="col-sm-12">
+            <ul class="category-show list-unstyled d-flex ">
+                <li class="category-item"><a href="" class="category-link active">All Products</a></li>
+                <li class="category-item"><a href="" class="category-link">Phone</a></li>
+                <li class="category-item"><a href="" class="category-link">Laptop</a></li>
+                <li class="category-item"><a href="" class="category-link">Desktop</a></li>
+                <li class="category-item"><a href="" class="category-link">Other</a></li>
+                <li class="category-item ml-auto"><a href="" class="categorylink">
+                        <span>Sort By</span>
+                        <i class="fas fa-sort-amount-down-alt pt-2"></i>
+                    </a></li>
+                <li class="category-item">
+                    <form class="form-inline">
+                        <input class="form-control mr-sm-2 " type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <%- include ../layout/product_view2 %>
+</div>
+<% block('script','<script src="javascripts/home.js"></script>') -%>
+<% block('stylesheets','<link rel="stylesheet" href="stylesheets/category.css" /> + <link rel="stylesheet" href="stylesheets/productview.css" />') -%>

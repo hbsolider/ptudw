@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const product_manage=require('../models/product_manage');
 //sản phẩm nổi bật
 products=[];
 oneproduct=function(src,title,cp,op,dp,bidder,time){
@@ -36,9 +37,23 @@ exPrice=laptop;
 products=phone;
 global.data=glob;
 router.get('/', function (req, res, next) {
-  res.render('index', {
+  res.render('pages/index', {
     title: 'Home'
   });
 });
-
+// sign in sign up
+router.get('/signin',function(req,res,next){
+  res.render('pages/signin',{title:'Sign in'});
+})
+router.get('/signup', (req, res,next) => {
+  res.render('pages/signup',{title:'Sign up'});
+});
+//products
+router.get('/product',(req,res,next)=>{
+  res.render('pages/products',{title:'Products'});
+})
+//contact
+router.get('/contact',(req,res,next)=>{
+  res.render('pages/contact',{title:'Contact'});
+})
 module.exports = router;
