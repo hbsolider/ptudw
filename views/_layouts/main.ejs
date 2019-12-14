@@ -3,36 +3,66 @@
 
 <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title><%= title %></title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="stylesheets/home.css" />
-    <%- block('stylesheets') %>
+  <title><%= title %></title>
+  <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Montserrat&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://kit.fontawesome.com/03a3640dee.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="stylesheets/home.css" />
+  <%- block('stylesheets') %>
 </head>
 
 <body>
-    <nav>
-        <%- include('../part_layout/navbar') %>
-    </nav>
-
-    <div class="container-full-fluid">
-        <%- body -%>
+  <!-- header info -->
+  <!-- sale -->
+  <div class="header-info">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="header-item">
+            <img src="images/shiptruck.png" alt="">
+            <p>Free shipping on orders over $1000 in VN</p>
+          </div>
+        </div>
+        <div class="col-md-4 text-left text-lg-center">
+          <div class="header-item">
+            <img src="images/goldmedal.png" alt="">
+            <p>20% Golden Member Discount</p>
+          </div>
+        </div>
+        <div class="col-md-4 text-left text-xl-right">
+          <div class="header-item">
+            <img src="images/sale.png" alt="">
+            <p>30% off on Vertu brand. Use code: 30OFF</p>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+  <!-- navbar -->
+  <nav class="shadow-sm nav">
+    <%- include('../part_layout/navbar') %>
+  </nav>
 
-    <footer class="fixed-bottom">
-        <%- include('../part_layout/footer') %>
-    </footer>
+  <div class="container-full-fluid">
+    <%- body -%>
+  </div>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
-    </script>
-    <%- block('script') %>
+  <footer class="fixed-bottom">
+    <%- include('../part_layout/footer') %>
+  </footer>
+  <script src="https://code.jquery.com/jquery-3.3.1.js">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+  </script>
+
+  <%- block('script') %>
 </body>
 
 </html>

@@ -3,20 +3,11 @@ $(window).scroll(function () {
     $(".logo").css("opacity", 1 - x / 56);
     $(".view").css("opacity", 1 - x / 1000);
     if ($(window).scrollTop() >= 56) {
-        $(".nav").addClass("fixed-top");
-        $(".nav-brand").show();
-        $("#nav").addClass("justify-content-between");
-        $(".navbar-nav").addClass("ml-auto");
-        $("#navv").removeClass("container");
-        $("#navv").addClass("container-fluid");
         $(".carousel-caption").fadeIn(1500);
         $(".view").css("opacity", 1 - 56 / 1000);
-    } else {
+        $(".nav").addClass("fixed-top");
+    }else{
         $(".nav").removeClass("fixed-top");
-        $(".nav-brand").hide();
-        $("#navv").removeClass("container-fluid");
-        $("#navv").addClass("container");
-        $(".navbar-nav").removeClass("ml-auto");
     }
 });
 $('.carousel').carousel({

@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const product_manage=require('../models/product_manage');
+var usermanage=require('../models/user_manage');
 //sản phẩm nổi bật
 products=[];
 oneproduct=function(src,title,cp,op,dp,bidder,time){
@@ -51,9 +52,21 @@ router.get('/signup', (req, res,next) => {
 //products
 router.get('/product',(req,res,next)=>{
   res.render('pages/products',{title:'Products'});
-})
+});
 //contact
 router.get('/contact',(req,res,next)=>{
   res.render('pages/contact',{title:'Contact'});
-})
+});
+//about
+router.get('/about',(req,res,next)=>{
+  res.render('pages/about',{title:'About Us'});
+});
+
+//post sign in
+router.post('/signin', async(req, res,next) => {
+  const result = await usermanage.loadusername(req.body);
+  res.redirect('/signin');
+});
+
+
 module.exports = router;

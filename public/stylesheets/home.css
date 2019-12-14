@@ -1,6 +1,6 @@
+
+@import url(navbar.css);
 @import url(_var.css);
-
-
 * {
     margin: 0;
     padding: 0;
@@ -43,79 +43,12 @@
     border-bottom: 1px solid var(--textcolor);
 }
 
-
-/* header */
-.navbar {
-    font-weight: 600;
-    text-transform: capitalize;
-    background-color: var(--bgcolor);
-    padding: 0.5rem 0rem !important;
-}
-
-.shadow-sm {
-    box-shadow: 0 .125rem 0 rgba(0, 0, 0, .075);
-}
-
-.bd-navbar {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-header .navbar .navbar-brand {
-    font-size: 30px;
-}
-
-header .navbar .navbar-nav .nav-item a {
-    color: var(--textcolor);
-    margin-right: 4rem;
-    letter-spacing: 0.5px;
-}
-
-header .navbar .navbar-nav .nav-item a:hover {
-    text-decoration: none;
-    padding-bottom: 6.5px;
-    color: var(--hovercolor);
-    border-bottom: 1.5px solid var(--hovercolor);
-    transition: all 0.2s ease-out;
-}
-
-.dropdown-item:active {
-    background-color: var(--light);
-}
-
-header .navbar .signiu {
-    text-transform: capitalize;
-    letter-spacing: 0.5px;
-    padding: 8px;
-    color: var(--textcolor);
-}
-
-header .navbar .signiu:hover {
-    position: relative;
-    text-decoration: none;
-    color: var(--hovercolor);
-    border-bottom: 1.5px solid var(--hovercolor);
-    transition: all 0.2s ease-out;
-}
-
 .account {
     position: relative;
     justify-self: flex-end;
     z-index: 1;
 }
 
-.account img {
-    height: 100%;
-    width: auto;
-    height: 30px;
-}
-
-.cart img {
-    max-width: 30px;
-    display: inline-block;
-    margin-right: 13px;
-}
 
 .btn .badge {
     top: 12px;
@@ -230,7 +163,7 @@ h6{
 .carousel-item .carousel-caption {
     display: none;
     position: absolute;
-    top: 40%;
+    top: 10%;
     translate: (-50%, -50%);
 }
 
@@ -244,3 +177,9 @@ h6{
 }
 
 
+.px-4-5{
+    padding-left: 2.1rem;
+}
+.facat, .facus{
+    padding: 0 0.25rem;
+}

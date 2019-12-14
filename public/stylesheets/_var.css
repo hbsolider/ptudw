@@ -3,13 +3,19 @@ html, body{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
 }
 :root{
     --font_bigshouder:'Big Shoulders Text', cursive;
-    --font_monterrat: font-family: 'Montserrat', sans-serif;
-    --hovercolor: rgba(237, 62, 62,0.9);
+    --font_monterrat: 'Montserrat', sans-serif;
+    --font_logo: 'Abril Fatface', cursive;
+    --hovercolor: rgba(237, 62, 62,1);
     --bgcolor:#fafafa;
     --textcolor:#212121;
+
+    /* part 2 */
+    --maincolor:rgba(237, 62, 62,0.9);
+    --sizelogo: 2rem;
 }
 .dropdown:hover .dropdown-menu{
     display: block;

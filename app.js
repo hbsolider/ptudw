@@ -6,7 +6,7 @@ var logger = require('morgan');
 var engine = require('ejs-mate');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
+var adminRouter=require('./routes/admin');
 var app = express();
 
 // view engine setup
@@ -24,7 +24,7 @@ app.use( express.static( "public" ) );
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-//
+app.use('/admin',adminRouter);
 //
 
 // catch 404 and forward to error handler

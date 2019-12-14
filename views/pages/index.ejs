@@ -3,33 +3,24 @@
 +'<link rel="stylesheet" href="stylesheets/fearture.css" />') -%>
 
 <% block('script').append('<script src="javascripts/home.js"></script>') %>
-<!-- sale -->
-<div class="header-info">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4">
-        <div class="header-item">
-          <img src="images/shiptruck.png" alt="">
-          <p>Free shipping on orders over $1000 in VN</p>
-        </div>
-      </div>
-      <div class="col-md-4 text-left text-lg-center">
-        <div class="header-item">
-          <img src="images/goldmedal.png" alt="">
-          <p>20% Golden Member Discount</p>
-        </div>
-      </div>
-      <div class="col-md-4 text-left text-xl-right">
-        <div class="header-item">
-          <img src="images/sale.png" alt="">
-          <p>30% off on Vertu brand. Use code: 30OFF</p>
-        </div>
-      </div>
+
+<!-- banner -->
+<div class="container-fluid px-4-5 py-2" style="width: 80%;">
+  <div class="row">
+    <div class="col-md-4">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><i class="fas facat fa-bars"></i> Category</li>
+        <li class="list-group-item"><i class="fas facus fa-laptop"></i>Electronics</li>
+        <li class="list-group-item"><i class="fas facus fa-clock"></i>Watch</li>
+        <li class="list-group-item"><i class="fas facus fa-sun"></i>Skin Care</li>
+        <li class="list-group-item"><i class="fas facus fa-shoe-prints"></i>Shoes</li>
+      </ul>
+    </div>
+    <div class="col-md-8">
+      <%- include('../part_layout/banner') %>
     </div>
   </div>
 </div>
-<!-- banner -->
-<%- include('../part_layout/banner') %>
 <!-- notice -->
 <div class="container">
   <!-- sản phẩm gần kết thúc -->

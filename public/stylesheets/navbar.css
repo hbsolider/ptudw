@@ -1,0 +1,39 @@
+@import url('./lib/hover.css');
+.navbar-brand{
+    font-size: var(--sizelogo);
+}
+.navbar-brand a{
+    position: relative;
+    font-family: var(--font_logo);
+    letter-spacing: 1px;
+    color: var(--maincolor);
+    text-transform: uppercase;
+}
+.hvr-underline-from-center::before{
+    background: var(--maincolor);
+}
+.nav-item{
+    margin-right: 2rem;
+}
+.nav-link{
+    font-weight: 550;
+    color: var(--textcolor);
+    text-transform: capitalize;
+    letter-spacing: 1px;
+}
+.nav-link:hover{
+    position: relative;
+    color: var(--hovercolor);
+    transition: all 0.3s;
+
+}
+.navbar-brand a:hover{
+    position: relative;
+    text-decoration: none;
+    border-bottom:none;
+}
+/* icon find */
+.btn-outline-cus{
+    border: solid 0.5px var(--textcolor);
+    color:var(--maincolor);
+}
