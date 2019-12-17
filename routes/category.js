@@ -9,6 +9,6 @@ router.get("/phone",function(req,res,next){
     res.render("cate-phone",{title:"Phone"});
 })
 router.get("/demo",function(req,res,next){
-    res.render("demo",{title:"demo-show"});
+    res.rend("demo",{title:"demo-show"});
 })
 module.exports = router;

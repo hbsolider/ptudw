@@ -1,0 +1,202 @@
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
+.starrating > input {display: none;}  /* Remove radio buttons */
+
+.starrating > label:before { 
+  content: "\f005"; /* Star */
+  margin-top: 2dp;
+  font-size: 1em;
+  color: #ffca08;
+  font-family: FontAwesome;
+  display: inline-block; 
+}
+
+
+.gallery-wrap .img-big-wrap img {
+    height: 450px;
+    width: auto;
+    display: inline-block;
+    cursor: zoom-in;
+}
+
+
+.gallery-wrap .img-small-wrap .item-gallery {
+    width: 60px;
+    height: 60px;
+    border: 1px solid #ddd;
+    margin: 7px 2px;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.gallery-wrap .img-small-wrap {
+    text-align: center;
+}
+
+.gallery-wrap .img-small-wrap img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+    cursor: zoom-in;
+}
+
+.AuctionTimer {
+    height: fit-content;
+    width: fit-content;
+    text-align: center;
+    line-height: 40px;
+    font-size: 40px;
+    letter-spacing: 2px;
+}
+
+.customShadowBorder {
+    width: 90px;
+    height: 60px;
+    padding-top: 8px;
+    margin-right: 12px;
+    border-radius: 4px;
+    font-family:  inherit;
+    color: orangered;
+    border: 2px solid rgb(199, 199, 199);
+    display: inline-block;
+}
+
+#bidInfo {
+    pointer-events: none;
+    font-family: 'Roboto', sans-serif;
+    color: #212529;
+    margin-bottom: 14px;
+}
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.smallUpperHeader {
+    font-size: 15px;
+    font-family: 'Open Sans';
+    text-transform: uppercase;
+    color: #A5A5A6;
+    letter-spacing: 0.2px;
+    display: block;
+}
+
+#currentBidText{
+    font-size: 40px;
+    color: plum;
+}
+.place_bid {
+    position: relative;
+}
+.placeBidText{
+    margin-bottom: 10px;
+}
+.bidDetail {
+    float: left;
+    width: 90%;
+    display: table-cell;
+}
+.bidding_box_fancy {
+    display: block;
+    width: 172px;
+    position: relative;
+    margin: 0 auto;
+    float: left;
+}
+.bidding_box_fancy span {
+    display: block;
+    width: 100%;
+    position: relative;
+}
+.bidding_box_fancy em:first-child {
+    left: 0;
+    border-right: 1px solid #dee2e6;
+}
+.bidding_box_fancy em:last-child {
+    right: 0;
+    border-left: 1px solid #dee2e6;
+}
+.bidding_box_fancy em {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+}
+.bidding_box_fancy em button{
+    border: none;
+    background: transparent;
+    outline: none;
+    cursor: pointer;
+    height: 43px;
+    width: 33px;
+    line-height: 43px;
+    padding: 0;
+    margin: 0;
+    float: left;
+    font-size: 30px;
+    text-align: center;
+    color: #a19fa0;
+}
+
+.CustomSelect {
+    font-size: 20px;
+    color: #027CA5;
+    font-weight: 600;
+    border: 1px solid #dee2e6;
+    padding: 8px;
+    border-radius: 8px;
+    transition: none;
+    box-sizing: border-box;
+    text-align: center;
+    height: 44px;
+}
+
+.buttons:before {
+    font-family: 'FontAwesome';
+    padding-right: 10px;
+}
+.bidding:before {
+    content: "\f0e3";
+}
+.bidding_button {
+    width: 131px;
+    min-height: 43px;
+    display: block;
+    float: left;
+    margin-left: 9px;
+}
+.bidding_button a {
+    font-family: 'Roboto', sans-serif;
+    background: plum;
+    color: #fff;
+    font-weight: 600;
+    font-size: 17px;
+    padding: 13.7px 0px;
+    border-radius: 6px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+}  
+.place_bid{
+    position: relative;
+}
+.productData {
+    margin-top: 10px;
+}
+.product_details {
+    float: left;
+    padding: 10px 0 20px;
+    line-height: 24px;
+    width: 100%;
+}
+.productData h1 {
+    font-family: 'Roboto', sans-serif;
+    color: plum;
+    padding: 20px 0px;
+    font-size: 21px;
+}
+.product_details h3 {
+    padding: 10px 0 10px;
+}
