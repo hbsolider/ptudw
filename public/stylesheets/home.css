@@ -175,6 +175,11 @@ h6{
     border: 1px solid var(--bgcolor);
     transition: all 0.2s ease-in;
 }
+.carousel-caption .learnmore:hover{
+    text-decoration: none;
+    color: #fff;
+    background-color: var(--maincolor);;
+}
 
 
 .px-4-5{

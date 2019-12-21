@@ -37,3 +37,7 @@
     border: solid 0.5px var(--textcolor);
     color:var(--maincolor);
 }
+
+.btn:hover{
+    background-color: var(--maincolor);
+}

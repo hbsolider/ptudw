@@ -3,13 +3,14 @@ $(window).scroll(function () {
     $(".logo").css("opacity", 1 - x / 56);
     $(".view").css("opacity", 1 - x / 1000);
     if ($(window).scrollTop() >= 56) {
-        $(".carousel-caption").fadeIn(1500);
+        
         $(".view").css("opacity", 1 - 56 / 1000);
         $(".nav").addClass("fixed-top");
     }else{
         $(".nav").removeClass("fixed-top");
     }
 });
+$(".carousel-caption").fadeIn(1500);
 $('.carousel').carousel({
     interval: 5000
 });
