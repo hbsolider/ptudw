@@ -52,6 +52,10 @@ router.get('/signup', (req, res,next) => {
 router.get('/product',(req,res,next)=>{
   res.render('pages/products',{title:'Products'});
 });
+
+router.get('/category/demo',(req,res,next)=>{
+  res.render('pages/vProduct',{title:'demo'});
+}); 
 //contact
 router.get('/contact',(req,res,next)=>{
   res.render('pages/contact',{title:'Contact'});
