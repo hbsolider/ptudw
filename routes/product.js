@@ -8,6 +8,9 @@ router.get("/", function (req, res, next) {
         title: "Products"
     });
 })
+router.get('/demo',(req,res,next)=>{
+    res.render('pages/vProduct',{title:'demo'});
+  }); 
 router.get("/add", function (req, res, next) {
     res.render("./mProduct/add", {
         title: "Add Product"
@@ -27,11 +30,6 @@ router.post("/add", async (req, res, next) => {
     // }
 
     res.redirect("/product/add");
-})
-router.get("/demo", function (req, res, next) {
-    res.render("demo", {
-        title: "demo-show"
-    });
 })
 
 

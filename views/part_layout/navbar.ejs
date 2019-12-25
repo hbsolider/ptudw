@@ -9,9 +9,28 @@
             class="fas fa-search "></i></button>
       </form>
       <div class="mr-auto"></div>
-      <div class="nav-user">
-        <a href="signin" class="nav-link hvr-underline-from-center">Sign in/ Sign up<i class="fas fa-sign-in-alt  align-middle ml-2"
-            style="font-size:24px"></i></a>
+      <div class="nav-user align-middle">
+        <% if (user) { %>
+
+        
+        <div class="dropdown ">
+          <div class="h5">Hello <strong class=""><%= user.user_name %></strong> <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+            data-target="dropdown-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-user" aria-hidden="true"></i>
+          </button></div>
+          
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+            
+            <a class="dropdown-item" href="#">Profile</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="/logout">Log out</a>
+          </div>
+        </div>
+        <% } else {%>
+        <a href="signin" class="nav-link hvr-underline-from-center">Sign in/ Sign up<i
+            class="fas fa-sign-in-alt  align-middle ml-2" style="font-size:24px"></i></a>
+        <%}%>
+        
 
       </div>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"

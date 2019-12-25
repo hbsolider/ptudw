@@ -14,7 +14,7 @@ const pool = mysql.createPool({
 const mysql_query = util.promisify(pool.query).bind(pool);
 
 module.exports = {
-  loadusername:(username)=>mysql_query(`select * from users where username= ? `,username),
   load: sql => mysql_query(sql),
   add: (tableName, entity) => mysql_query(`insert into ${tableName} set ?`, entity),
+  findbyId: (tableName, id)=> mysql_query(`select * from ${tableName} where id = ?`,id),
 };
