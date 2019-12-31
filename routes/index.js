@@ -94,7 +94,7 @@ router.get('/product',islog, (req, res, next) => {
 
 //contact
 router.get('/contact', (req, res, next) => {
-  res.render('pages/contact', {
+  res.render('pages/vProduct', {
     title: 'Contact'
   });
 });
