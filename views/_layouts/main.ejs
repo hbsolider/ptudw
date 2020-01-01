@@ -6,15 +6,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-  <title><%= title %></title>
+  <meta http-equiv="Pragma" content="no-cache">
+  <title><% title|| "Auction" %></title>
   <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Montserrat&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <script src="https://kit.fontawesome.com/03a3640dee.js" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/file-upload-with-preview@4.0.2/dist/file-upload-with-preview.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.js">
+  </script>
+  <!-- cus -->
+  <%- include('../part_layout/header') %>
 
+  <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
   <link rel="stylesheet" href="../stylesheets/home.css" />
   <%- block('stylesheets') %>
 </head>
@@ -58,13 +63,12 @@
   <footer class="fixed-bottom">
     <%- include('../part_layout/footer') %>
   </footer>
-  <script src="https://code.jquery.com/jquery-3.3.1.js">
-  </script>
+  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
   </script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
   </script>
-  
+
   <%- block('script') %>
 </body>
 

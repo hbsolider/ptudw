@@ -1,4 +1,4 @@
-<div class="container-fluid" style="width: 80%;">
+<div class="container-fluid bg-white" style="width: 80%;">
   <nav class="navbar d-block navbar-expand-lg navbar-white bg-white">
     <div class="d-flex align-items-center">
       <div class="navbar-brand"><a href="/" class="nav-link">Bidding</a></div>
@@ -11,23 +11,22 @@
       <div class="mr-auto"></div>
       <div class="nav-user align-middle">
         <% if (user) { %>
-
-        
         <div class="dropdown ">
-          <div class="h5">Hello <strong class=""><%= user.user_name %></strong> <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-            data-target="dropdown-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-user" aria-hidden="true"></i>
-          </button></div>
-          
+          <div class="h5">Hello <strong class=""><%= user.username %></strong> <button
+              class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+              data-target="dropdown-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-user" aria-hidden="true"></i>
+            </button></div>
+
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-            
-            <a class="dropdown-item" href="#">Profile</a>
+
+            <a class="dropdown-item" href="/user/profile">Profile</a>
             <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="/logout">Log out</a>
+            <a class="dropdown-item" href="/user/logout">Log out</a>
           </div>
         </div>
         <% } else {%>
-        <a href="signin" class="nav-link hvr-underline-from-center">Sign in/ Sign up<i
+        <a href="/user/signin" class="nav-link hvr-underline-from-center">Sign in/ Sign up<i
             class="fas fa-sign-in-alt  align-middle ml-2" style="font-size:24px"></i></a>
         <%}%>
         
@@ -46,16 +45,16 @@
           <a class="nav-link " href="/">home</a>
         </li>
         <li class="nav-item hvr-underline-from-center">
-          <a class="nav-link" href="product">category</a>
+          <a class="nav-link" href="/product">category</a>
         </li>
         <li class="nav-item hvr-underline-from-center">
           <a class="nav-link " href="#">hot deal</a>
         </li>
         <li class="nav-item hvr-underline-from-center">
-          <a class="nav-link" href="about">about</a>
+          <a class="nav-link" href="/about">about</a>
         </li>
         <li class="nav-item hvr-underline-from-center">
-          <a class="nav-link" href="contact">contact</a>
+          <a class="nav-link" href="/contact">contact</a>
         </li>
         
 

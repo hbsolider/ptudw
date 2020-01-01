@@ -1,46 +1,102 @@
 <% layout('/_layouts/main') -%>
 <% block('stylesheets','<link rel="stylesheet" type="text/css" href="https://unpkg.com/file-upload-with-preview@4.0.2/dist/file-upload-with-preview.min.css">') -%>
+<style>
+    .form-group label:after {
+        margin-left: 2px;
+        content: "*";
+        color: red;
+    }
 
+    .form {
+        height: 100%;
+    }
+    .custom-file-container__image-preview{
+        overflow-x: hidden;
+        height: 300px;
+    }
+</style>
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <legend>Add</legend>
+            <legend>Đăng bán sản phẩm</legend>
+            <hr class="solid">
         </div>
     </div>
-    <div class="col-md-8">
-        <form action="/product/add" method="POST">
-            <div class="custom-file-container" data-upload-id="myUniqueUploadId">
-                <label>Upload File <a href="javascript:void(0)" class="custom-file-container__image-clear"
-                        title="Clear Image">&times;</a></label>
-                <label class="custom-file-container__custom-file">
-                    <input type="file" class="custom-file-container__custom-file__custom-file-input" accept="*" multiple
-                        aria-label="Choose File" name="image">
-                    <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
-                    <span class="custom-file-container__custom-file__custom-file-control"></span>
-                </label>
-                <div class="custom-file-container__image-preview"></div>
+    <div class="col-md-sm-12">
+        <%- include('../part_layout/message') %>
+        <form action="add" method="POST" enctype="multipart/form-data">
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="nameProduct">Product name</label>
+                        <input type="text" name="nameProduct" id="nameProduct" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="type">Category</label>
+                        <input type="text" name="category" id="category" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="price_start">Starting Price</label>
+                        <input type="text" name="priceStart" id="priceStart" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="price_expect">Expecting Price</label>
+                        <input type="text" name="priceExpect" id="priceExpect" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="sel1">Transport Method:</label>
+                        <select class="form-control" id="chooseMethod" name="transpotMethod">
+                            <option value="1" selected>Ship tận nhà</option>
+                            <option value="2">Giao dịch trực tiếp</option>
+                            <option value="0">Khác</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="custom-file-container p-2" data-upload-id="myUniqueUploadId">
+                        <label class="rounded border border-secondary p-2">Upload File <a href="javascript:void(0)"
+                                class="custom-file-container__image-clear" title="Clear Image"><i
+                                    class="far fa-window-close"></i></a></label>
+                        <label class="custom-file-container__custom-file">
+                            <input type="file" class="custom-file-container__custom-file__custom-file-input" accept="image/*" multiple
+                                 aria-label="Choose File" name="file">
+                            <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
+                            <span class="custom-file-container__custom-file__custom-file-control"></span>
+                        </label>
+                        <div class="custom-file-container__image-preview"></div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <legend>Mô tả sản phẩm</legend>
+                    <textarea name="detail"></textarea>
+                    <div class="row">
+                        <button type="submit" class="btn btn-primary m-4  ml-auto">Đăng bán sản phẩm</button>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="nameProduct">Name Product</label>
-                <input type="text" name="name_product" id="name_product" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="type">Type</label>
-                <input type="text" name="id_type" id="id_type" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="price_start">Starting Price</label>
-                <input type="text" name="price_start" id="price_start" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="price_expect">Expecting Price</label>
-                <input type="text" name="price_expect" id="price_expect" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+
+
+
         </form>
+
     </div>
+
 </div>
 
 <script>
     var upload = new FileUploadWithPreview('myUniqueUploadId');
+    tinymce.init({
+        selector: 'textarea',
+        plugins: "image",
+        menubar: "insert",
+        height: "600"
+    });
+    $("#chooseMethod").change(() => {
+        var selectedCountry = $("#chooseMethod").children("option:selected").val();
+
+        if (selectedCountry === '0') {
+            console.log(selectedCountry)
+        }
+    })
 </script>

@@ -17,4 +17,5 @@ module.exports = {
   load: sql => mysql_query(sql),
   add: (tableName, entity) => mysql_query(`insert into ${tableName} set ?`, entity),
   findbyId: (tableName, id)=> mysql_query(`select * from ${tableName} where id = ?`,id),
+  deletebyId: (tableName, id)=>mysql_query(`delete from ${tableName} where id = ?`,id),
 };

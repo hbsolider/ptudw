@@ -1,7 +1,7 @@
 <% layout('_layouts/main') -%>
 
-<% block('stylesheets','<link rel="stylesheet" href="stylesheets/signin.css">') -%>
-<% block('script','<script src="javascripts/sign_up.js"></script>') -%>
+<% block('stylesheets','<link rel="stylesheet" href="../stylesheets/signin.css">') -%>
+<% block('script','<script src="../javascripts/sign_up.js"></script>') -%>
 <h1 class="h1 mb-3">Sign up</h1>
 
 <div class="container">
@@ -10,7 +10,7 @@
       <div class="col-md-12">
         <%- include('../part_layout/message') %>
       </div>
-      <form  method="POST" action="/signup">
+      <form  method="POST" action="signup" autocomplete="off">
         <div class="form-row">
           
           <div class="col-md-12">
@@ -23,11 +23,11 @@
               title="The password must begin with a letter and contain at least one digit" required>
           </div>
           <div class="col-md-12">
-            <input type="number" name="user_phone" class="form-control form-control-lg flat-input"
+            <input type="number" name="userphone" class="form-control form-control-lg flat-input"
               placeholder="Number phone">
           </div>
           <div class="col-md-12">
-            <input type="text" name="user_name" class="form-control form-control-lg flat-input"
+            <input type="text" name="username" class="form-control form-control-lg flat-input"
               placeholder="Your name">
           </div>
           

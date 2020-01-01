@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const product_manage = require('../models/product_manage');
-const User = require('../models/user');
+const User = require('../models/User');
 const passport = require('passport');
 const islog = require('../models/isAuth');
 //sản phẩm nổi bật
@@ -46,50 +46,6 @@ router.get('/', function (req, res, next) {
     title: 'Home'
   });
 });
-// sign in sign up
-router.get('/signin', function (req, res, next) {
-  if(req.user){
-    res.redirect('/');
-  }
-  res.render('pages/signin', {
-    title: 'Sign in',
-    message: req.flash('error')
-  });
-})
-router.get('/signup', (req, res, next) => {
-  if(req.user){
-    res.redirect('/');
-  }
-  res.render('pages/signup', {
-    title: 'Sign up',
-    message: req.flash('error')
-  });
-})
-
-router.post('/signin', passport.authenticate('local-signin', {
-  successRedirect: '/profile',
-  failureRedirect: '/signin',
-  failureFlash: true
-}))
-router.get('/profile',islog,(req,res,next)=>{
-  res.send(req.user);
-})
-router.post('/signup', passport.authenticate('local-signup', {
-  successRedirect: '/',
-  failureRedirect: '/signup',
-  failureFlash: true
-}));
-router.get('/logout',(req,res,next)=>{
-  req.logOut();
-  res.redirect('/');
-})
-
-//products
-router.get('/product',islog, (req, res, next) => {
-  res.render('pages/products', {
-    title: 'Products'
-  });
-});
 
 
 //contact
@@ -105,11 +61,6 @@ router.get('/about', (req, res, next) => {
   });
 });
 
-//post sign in
-router.post('/signin', async (req, res, next) => {
-  //const result = await usermanage.loadusername(req.body);
-  res.redirect('/signin');
-});
 
 
 module.exports = router;

@@ -1,0 +1,40 @@
+<% layout('_layouts/admin') -%>
+<div class="row">
+    <div class="col-md-6">
+        <form method="POST" action="addcate/add">
+            <div class="form-group">
+                <label for="category">Category</label>
+                <input id="category" class="form-control" type="text" name="categoryname">
+            </div>
+            <button type="submit" class="btn btn-primary m-4  ml-auto">Submit</button>
+
+        </form>
+        <%- include('../part_layout/message') %>
+    </div>
+
+    <div class="col-sm-6">
+        <form method="post">
+            <table class="table text-center ">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Category</th>
+                    </tr>
+                </thead>
+                <% category.forEach(function(cate){ %>
+                <thead>
+                    <tr class="align-items-center">
+                        <th><%= cate.id %></th>
+                        <th><%= cate.categoryname %></th>
+                        <th><button class="btn btn-primary btn-sm" type="submit"
+                                formaction="/admin/addcate/delete/<%= cate.id%>"><i
+                                    class="fas fa-trash-alt"></i></button>
+                        </th>
+                    </tr>
+                </thead>
+                <% }) %>
+            </table>
+        </form>
+
+    </div>
+</div>
