@@ -1,3 +1,4 @@
+
 <div class="container-fluid bg-white" style="width: 80%;">
   <nav class="navbar d-block navbar-expand-lg navbar-white bg-white">
     <div class="d-flex align-items-center">
@@ -59,9 +60,35 @@
         
 
       </ul>
-      <div class="ml-auto"></div>
-      <a class="nav-link hvr-grow" href="#"><i class="fas fa-cart-plus mr-2 fa-lg"></i>Cart<span class="badge badge-danger align-top">1</span></a>
+      <div class=" ml-auto"></div>
+      <a class="cart-btn nav-link hvr-grow" href="#"><i class="fas fa-cart-plus mr-2 fa-lg"></i>Cart<span class="cart-items badge badge-danger align-top">1</span></a>
       
     </div>
   </nav>
+  <div class="cart-overlay">
+    <div class="cart">
+      <span class="close-cart">
+        <i class="fa fa-window-close" aria-hidden="true"></i>
+      </span>
+      <h2>Your Cart</h2>
+      <div class="cart-content">
+          <div class="cart-item">
+            <img src="/images/ip111.jpg" alt="product"/>
+            <div>
+              <h5><b>Iphone 11</b></h5>
+              <h4 style="color: red;"><span>Your price : $<span class = "bid_price"> 999.00</h4>
+              <h4>Current price: $ <span class = "highest_price">1125.00</span></h4>
+              <p></p>
+              <h4 >Time left: <span class = "time_left">1 day</span></h4>
+            </div>
+            <button type="button" class="remove-item btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> </button>
+          </div>
+          <div class="cart-footer">
+            <h3>Your total : $ <span class="cart-total">999.00</span></h3>
+            <button type="button" class="clear-cart btn btn-warning">Clear cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

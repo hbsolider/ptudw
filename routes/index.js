@@ -50,7 +50,7 @@ router.get('/', function (req, res, next) {
 
 //contact
 router.get('/contact', (req, res, next) => {
-  res.render('pages/vProduct', {
+  res.render('pages/contact', {
     title: 'Contact'
   });
 });
