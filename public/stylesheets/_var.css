@@ -1,22 +1,60 @@
-
-html, body{
+html,
+body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
 }
-:root{
-    --font_bigshouder:'Big Shoulders Text', cursive;
-    --font_monterrat: 'Montserrat', sans-serif;
+
+:root {
+    --font_bigshouder: 'Big Shoulders Text', cursive;
+    --font_monterrat: 'Crimson Text', serif;
     --font_logo: 'Abril Fatface', cursive;
-    --hovercolor: rgba(237, 62, 62,1);
-    --bgcolor:#fafafa;
-    --textcolor:#212121;
+    --hovercolor: rgba(237, 62, 62, 1);
+    --bgcolor: #fafafa;
+    --textcolor: #212121;
 
     /* part 2 */
-    --maincolor:rgba(237, 62, 62,0.9);
-    --sizelogo: 2rem;
+    --maincolor: rgba(237, 62, 62, 0.9);
+    --sizelogo: 1.5rem;
 }
-.dropdown:hover .dropdown-menu{
+
+.dropdown:hover .dropdown-menu {
     display: block;
+}
+
+.carousel-caption {
+    font-weight: 550;
+}
+
+.shape {
+    display: flex;
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 150px solid rgb(239,81,81,81);
+    border-bottom: 50px solid transparent;
+}
+
+.shape-text {
+    color: #212121;
+    font-size: 18px;
+    font-weight: bold;
+    position: relative;
+    top: 8px;
+    left: -150px;
+    white-space: nowrap;
+    transform: rotate(-18deg);
+}
+.card .card-text::before{
+    content:'NOW: ';
+}
+.heart{
+    position: absolute;
+    right:0;   
+    top:0;
+    margin: 10px;
+}
+.heart:active{
+    color: red;
 }

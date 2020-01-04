@@ -1,46 +1,132 @@
-<div class="row">
-    <% tempp.forEach(function(thing){ %>
-    <div class="col-lg-4 mt-2">
-        <div class="card text-left">
-            <div class="card-view ">
-                <img class="card-img-top" src=<%= thing.src %> alt="">
-                <div class="timedown text-center p-2">
-                    <div class="date"><%= thing.time %></div>
-                </div>
-                <div class="seemore">
-                    <div class="pb-4"><a href="">Add to cart</a></div>
-                    <div class="pt-4"><a href="">View More</a></div>
-                </div>
-            </div>
+<div class='container-fluid'>
+    <div class="row">
+<%temp.forEach((element,i) => {%>
+    <%if (i==0) {%>
+        <div class="col-md-5 mx-auto my-2 px-0 ">
+            <div class="card col-12 border pt-0 hvr-float-shadow hvr-icon-pulse-grow ">
+                <div class="shape">
+                    <div class="shape-text">
+                        <%= cat %>
+                    </div>
 
-            <div class="card-body m-2">
-                <h4 class="card-title"><%= thing.title %></h4>
-                <div class="row">
-                    <div class="col">
-                        <h5 class="card-text d-flex">Current price:
-                            <span class="cp mr-auto ml-1"><%= thing.cp %></span>
-                            <span class="d-flex opct-90">
-                                <span>By: </span>
-                                <h6 class="bidder pt-1">***<%= thing.bidder %></h6>
-                            </span>
-                        </h5>
+                </div>
 
+                <img class='mx-auto img-thumbnail ' src="/uploads/<%=element.id%>/1.jpg" width="auto" height="auto" />
+                <i class="far fa-heart ml-auto fa-2x heart  hvr-icon"></i>
+                <div class="card-body text-center mx-auto">
+                    <div class='cvp'>
+                        <h5 class="card-title font-weight-bold"><%= element.nameProduct%> </h5>
+                        <p class="card-text text-uppercase "><%= element.priceStart %></p> <a href="#" class="btn details px-auto">View
+                            details</a><br /> <a href="#" class="btn cart px-auto">START BIDDING</a>
                     </div>
                 </div>
-
-                <div class="row mt-2">
-                    <div class="col">
-                        <h6 class="card-text">Original price: <span class="op"><%= thing.op %></span></h6>
-                        <div class="datepost float-right d-flex mt-2">
-                            <div>Date post:</div>
-                            <div class="dp ml-2"><%= thing.dp %></div>
+                <div class="dateCreateOn">
+                        <div class="date-text text-muted">
+                            <%= gb(element.dateUp)%>
                         </div>
-
                     </div>
-                </div>
-
             </div>
         </div>
-    </div>
-    <% }) %>
+    <%}%>
+    <%if (i<=4||i>0) {%>
+      <%if (i==1) {%>
+        <div class="col-md-7 mx-0">
+            <div class="row">
+                <div class="card ml-4 col-md-5 my-2 border hvr-float-shadow pt-0 hvr-icon-pulse-grow">
+                    <div class="shape">
+                        <div class="shape-text">
+                            <%= cat %>
+                        </div>
+                    </div>
+                    <img class='mx-auto img-thumbnail' src="/uploads/<%=element.id%>/1.jpg" width="auto" height="auto" />
+                    <i class="far fa-heart ml-auto fa-2x heart  hvr-icon"></i>
+                    <div class="card-body text-center mx-auto mb-1">
+                        <div class='cvp'>
+                            <h5 class="card-title font-weight-bold"><%= element.nameProduct%></h5>
+                            <p class="card-text"><%= element.priceStart %></p> <a href="#" class="btn details px-auto">View details</a><br />
+                            <a href="#" class="btn cart px-auto">ADD TO CART</a>
+                        </div>
+                    </div>
+                    <div class="dateCreateOn">
+                        <div class="date-text text-muted">
+                            <%= gb(element.dateUp)%>
+                        </div>
+                    </div>
+                </div>  
+      <%}%>
+      <%if(i==2){%>
+        <div class="card ml-4 col-md-5 my-2 border pt-0 hvr-float-shadow hvr-icon-pulse-grow">
+                    <div class="shape">
+                        <div class="shape-text">
+                            <%= cat %>
+                        </div>
+                    </div>
+                    <img class='mx-auto img-thumbnail' src="/uploads/<%=element.id%>/1.jpg" width="auto" height="auto" />
+                    <i class="far fa-heart ml-auto fa-2x heart  hvr-icon"></i>
+                    <div class="card-body text-center mx-auto">
+                        <div class='cvp'>
+                            <h5 class="card-title font-weight-bold"><%= element.nameProduct%></h5>
+                            <p class="card-text"><%= element.priceStart %></p> <a href="#" class="btn details px-auto">View details</a><br />
+                            <a href="#" class="btn cart px-auto">ADD TO CART</a>
+                        </div>
+                    </div>
+                    <div class="dateCreateOn">
+                        <div class="date-text text-muted">
+                            <%= gb(element.dateUp)%>
+                        </div>
+                    </div>
+                </div>
+            </div>
+      <%}%> 
+      <%if (i==3) {%>
+            <div class="row">
+                <div class="card ml-4 col-md-5 my-2 border hvr-float-shadow pt-0 hvr-icon-pulse-grow">
+                    <div class="shape">
+                        <div class="shape-text">
+                            <%= cat %>
+                        </div>
+                    </div>
+                    <img class='mx-auto img-thumbnail' src="/uploads/<%=element.id%>/1.jpg" width="auto" height="auto" />
+                    <i class="far fa-heart ml-auto fa-2x heart  hvr-icon"></i>
+                    <div class="card-body text-center mx-auto">
+                        <div class='cvp'>
+                            <h5 class="card-title font-weight-bold"><%= element.nameProduct%></h5>
+                            <p class="card-text"><%= element.priceStart %></p> <a href="#" class="btn details px-auto">View details</a><br />
+                            <a href="#" class="btn cart px-auto">ADD TO CART</a>
+                        </div>
+                    </div>
+                    <div class="dateCreateOn">
+                        <div class="date-text text-muted">
+                            <%= gb(element.dateUp)%>
+                        </div>
+                    </div>
+                </div>  
+      <%}%>
+      <%if(i==4){%>
+        <div class="card ml-4 col-md-5 my-2 border pt-0 hvr-float-shadow hvr-icon-pulse-grow">
+                    <div class="shape">
+                        <div class="shape-text">
+                            <%= cat %>
+                        </div>
+                    </div>
+                    <img class='mx-auto img-thumbnail' src="/uploads/<%=element.id%>/1.jpg" width="auto" height="auto" />
+                    <i class="far fa-heart ml-auto fa-2x heart  hvr-icon"></i>
+                    <div class="card-body text-center mx-auto">
+                        <div class='cvp'>
+                            <h5 class="card-title font-weight-bold"><%= element.nameProduct%></h5>
+                            <p class="card-text"><%= element.priceStart %></p> <a href="#" class="btn details px-auto">View details</a><br />
+                            <a href="#" class="btn cart px-auto">ADD TO CART</a>
+                        </div>
+                    </div>
+                    <div class="dateCreateOn">
+                        <div class="date-text text-muted">
+                            <%= gb(element.dateUp)%>
+                        </div>
+                    </div>
+                </div>
+            </div>
+      <%}%> 
+    <%}%>
+<%});%>
+</div>
 </div>

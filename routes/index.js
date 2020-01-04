@@ -1,9 +1,11 @@
 var express = require('express');
 var router = express.Router();
-const product_manage = require('../models/product_manage');
+const mProduct = require('../models/product_manage');
 const User = require('../models/User');
 const passport = require('passport');
 const islog = require('../models/isAuth');
+const gb = require('../config/globalF-V');
+//function variable
 //sản phẩm nổi bật
 products = [];
 oneproduct = function (src, title, cp, op, dp, bidder, time) {
@@ -40,10 +42,14 @@ hotproduct = phone;
 exPrice = laptop;
 products = phone;
 global.data = glob;
-global.user=null;
-router.get('/', function (req, res, next) {
+router.get('/', async(req, res, next)=> {
+  const pByTime = await mProduct.productByTime();
+  const pByPrice = await mProduct.productByPrice();
   res.render('pages/index', {
-    title: 'Home'
+    title: 'Home',
+    time: Object.values(pByTime),
+    price:pByPrice,
+    gb:(values)=> gb.getDate(values)
   });
 });
 

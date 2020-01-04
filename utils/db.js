@@ -6,7 +6,7 @@ const pool = mysql.createPool({
   host: 'localhost',
   port: 3306,
   user: 'root',
-  password: 'Cuongyeu1',
+  password: 'baobin123',
   database: 'mydb_auction',
   multipleStatements:true
 });

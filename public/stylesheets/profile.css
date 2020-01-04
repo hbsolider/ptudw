@@ -1,5 +1,5 @@
 .emp-profile {
-    margin-top: 3%;
+    padding: 1%;
     margin-bottom: 3%;
     border-radius: 0.5rem;
     background: #fff;
@@ -14,7 +14,7 @@
     height: 200px;
     border-radius: 50%;
     object-fit: cover;
-    object-position: center;
+    object-position: left;
 }
 
 .profile-img .file {

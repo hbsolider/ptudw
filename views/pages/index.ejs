@@ -2,10 +2,9 @@
 <% block('stylesheets','<link rel="stylesheet" href="stylesheets/productview.css" />'
 +'<link rel="stylesheet" href="stylesheets/fearture.css" />') -%>
 
-<% block('script').append('<script src="javascripts/home.js"></script>') %>
 
 <!-- banner -->
-<div class="container-fluid px-4-5 py-2" style="width: 80%;">
+<div class="container" >
   <div class="row">
     <div class="col-md-4">
       <ul class="list-group list-group-flush">
@@ -27,11 +26,13 @@
   <div class="endding-product mt-4">
     <div class="row">
       <div class="col">
-        <div class="h2">Running out</div>
+        <div class="h3 text-uppercase font-weight-bold">Running out</div>
       </div>
     </div>
-    <% tempp=products %>
+    <hr class="my-2">
+    <% temp= time; cat = "Running Out";%>
     <%- include('../layout/product_view') %>
+    
   </div>
   <!-- Có nhiều lượt ra giá nhất-->
   <div class="endding-product mt-4">
@@ -40,7 +41,8 @@
         <div class="h2">The Most Bidding</div>
       </div>
     </div>
-    <% tempp=hotproduct %>
+    <% temp= time;cat = "Most Bidding";%>
+    <% test = temp[0].dateUp;%>
     <%- include('../layout/product_view') %>
   </div>
   <!-- đắt nhất -->
@@ -50,7 +52,7 @@
         <div class="h2">The Most Expensive Product</div>
       </div>
     </div>
-    <% tempp=exPrice %>
+    <% temp= price; cat = "Most Expensive";%>
     <%- include('../layout/product_view') %>
   </div>
   <!-- fearture -->

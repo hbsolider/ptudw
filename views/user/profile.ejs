@@ -1,13 +1,12 @@
 <% layout('_layouts/main') -%>
 <% block('stylesheets','<link rel="stylesheet" href="/stylesheets/profile.css" />') -%>
 <div class="container emp-profile">
-    <form method="post">
+    <form method="POST" action="update" enctype="multipart/form-data">
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-img">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
-                        alt="" />
-                    <div class="file btn btn-lg btn-primary">Change Photo<input type="file" name="file" />
+                    <img src="/avatar/<%= profile.id %>/avatar.jpeg" alt="" />
+                    <div class="file btn btn-lg btn-primary">Change Photo<input type="file" name="avatar" />
                     </div>
                 </div>
             </div>
@@ -83,6 +82,7 @@
                             <div class="col-md-6">
                                 <% if (profile.permission==0) { %> <p>Người dùng mặc định/ Có thể đấu giá</p> <% } %>
                                 <% if (profile.permission==1) { %> <p>Có thể đấu giá/ Đăng bán sản phẩm</p> <% } %>
+                                <% if (profile.permission==2) { %> <p>Admin</p> <% } %>
                             </div>
                         </div>
                     </div>
@@ -139,3 +139,30 @@
         </div>
     </form>
 </div>
+
+<script>
+    $(document).ready(function () {
+        $("input[type=file]").click(function () {
+            $(this).val("");
+        });
+
+        $("input[type=file]").change(function () {
+            console.log('hihi')
+            readURL(this);
+        });
+    });
+    $(window).load(function() {
+		// Animate loader off screen
+		console.log('hjihi')
+	});
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('.profile-img img').attr('src', e.target.result);
+            }
+            console.log('hiha')
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>

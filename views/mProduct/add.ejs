@@ -10,9 +10,14 @@
     .form {
         height: 100%;
     }
-    .custom-file-container__image-preview{
+
+    .custom-file-container__image-preview {
         overflow-x: hidden;
         height: 300px;
+    }
+    .custom-file-container__custom-file__custom-file-control__button{
+        background-color: rgb(239,81,81);
+        font-weight: 550;
     }
 </style>
 <div class="container">
@@ -59,8 +64,8 @@
                                 class="custom-file-container__image-clear" title="Clear Image"><i
                                     class="far fa-window-close"></i></a></label>
                         <label class="custom-file-container__custom-file">
-                            <input type="file" class="custom-file-container__custom-file__custom-file-input" accept="image/*" multiple
-                                 aria-label="Choose File" name="file">
+                            <input type="file" class="custom-file-container__custom-file__custom-file-input"
+                                accept="image/*" multiple aria-label="Choose File" name="file">
                             <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
                             <span class="custom-file-container__custom-file__custom-file-control"></span>
                         </label>
@@ -85,7 +90,16 @@
 </div>
 
 <script>
-    var upload = new FileUploadWithPreview('myUniqueUploadId');
+    var upload = new FileUploadWithPreview('myUniqueUploadId', {
+        text: {
+            chooseFile: 'Nhấp để tải ảnh lên',
+            browse: 'Browse',
+            selectedCount: 'Files to choose',
+        },
+    });
+    $('.custom-file-container__custom-file__custom-file-control').click(()=>{
+        upload.clearPreviewPanel();
+    })
     tinymce.init({
         selector: 'textarea',
         plugins: "image",

@@ -7,23 +7,57 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta http-equiv="Pragma" content="no-cache">
-  <title><% title|| "Auction" %></title>
-  <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Montserrat&display=swap" rel="stylesheet">
+  <title><% "Auction"||title %></title>
+  <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Montserrat|Crimson+Text&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
   <script src="https://kit.fontawesome.com/03a3640dee.js" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/file-upload-with-preview@4.0.2/dist/file-upload-with-preview.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.4.1.js">
-  </script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+
   <!-- cus -->
   <%- include('../part_layout/header') %>
 
   <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-  <link rel="stylesheet" href="../stylesheets/home.css" />
+  <link rel="stylesheet" href="/stylesheets/home.css" />
+  <link rel="stylesheet" href="/stylesheets/footer.css" />
+
   <%- block('stylesheets') %>
 </head>
+<style>
+  .no-js #loader {
+    display: none;
+  }
 
+  .js #loader {
+    display: block;
+    position: absolute;
+    left: 100px;
+    top: 0;
+  }
+
+  .se-pre-con {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url(https://i.pinimg.com/originals/44/dc/9c/44dc9c3abf24f851d23e40e7774ebeec.gif) center no-repeat #fff;
+  }
+</style>
+<script>
+  $(window).load(function () {
+    // Animate loader off screen
+    $(".se-pre-con").fadeOut("slow");;
+  });
+</script>
+<div class="se-pre-con"></div>
 <body>
   <!-- header info -->
   <!-- sale -->
@@ -52,24 +86,26 @@
     </div>
   </div>
   <!-- navbar -->
-  <nav class="shadow-sm nav">
+  <nav class="shadow-sm nav bg-white">
     <%- include('../part_layout/navbar') %>
   </nav>
 
-  <div class="container-full-fluid mt-4">
+  <div class="container-full-fluid pt-1">
     <%- body -%>
   </div>
 
-  <footer class="fixed-bottom">
+  <footer class="pt-4 bg-light">
     <%- include('../part_layout/footer') %>
   </footer>
-  
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
   </script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
   </script>
-
+  <script src="/javascripts/global.js"></script>
   <%- block('script') %>
+
 </body>
+
 
 </html>

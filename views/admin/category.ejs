@@ -1,0 +1,66 @@
+<% layout('_layouts/admin') -%>
+<div class="row">
+    <div class="col-md-12">
+        <form method="POST" action="category/add">
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="form-group">
+                        <label for="category">Category</label>
+                        <input id="category" class="form-control" type="text" name="categoryname">
+                    </div>
+                </div>
+                <div class="col-sm-4 align-items-center ">
+                    <button type="submit" class="btn btn-primary m-4 mb-auto mr-auto">Submit</button>
+                </div>
+            </div>
+
+        </form>
+        <%- include('../part_layout/message') %>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <form method="post">
+            <table class="table text-center ">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Category</th>
+                    </tr>
+                </thead>
+                <% category.forEach(function(cate){ %>
+                <thead>
+                    <tr class="align-items-center">
+                        <th><%= cate.id %></th>
+                        <th><input type="text" value="<%= cate.categoryname %>" class="form-control w-50 mx-auto"
+                                id="<%= cate.id%>" disabled /></th>
+                        <th><button class="btn btn-danger btn-sm" type="submit"
+                                formaction="/admin/category/delete/<%= cate.id%>"><i
+                                    class="fas fa-trash-alt"></i></button>
+                            <button class="btn btn-primary btn-sm" type="button" onclick="test(<%= cate.id%>)"
+                                id="edit<%= cate.id%>"><i class="fas fa-edit"></i></button>
+                        </th>
+
+                    </tr>
+                </thead>
+                <% }) %>
+            </table>
+        </form>
+
+    </div>
+</div>
+<script>
+    function test(id) {
+        idd = '#' + `${id}`;
+        $(idd).removeAttr('disabled');
+        $('#edit' + `${id} `).removeClass('btn-primary');
+        $('#edit' + `${id} i`).removeClass('fa-edit');
+        $('#edit' + `${id} `).addClass('btn-success')
+        $('#edit' + `${id} i`).addClass('fa-check-square')
+        $(idd).prop('onclick',null);
+        $(idd).attr('onClick', 'test2(id);');
+    }
+    function test2(id){
+        console.log(id);
+    }
+</script>
