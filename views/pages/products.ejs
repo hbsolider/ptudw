@@ -17,8 +17,13 @@
                 <li class="category-item"><a href="/product?cat=" class="category-link">Desktop</a></li>
                 <li class="category-item"><a href="/product?cat=" class="category-link">Other</a></li>
                 <li class="category-item ml-auto"><a href="" class="categorylink">
-                        <span>Sort By</span>
-                        <i class="fas fa-sort-amount-down-alt pt-2"></i>
+                    <select id="sorting" onchange="selectionChange()">
+                        <option value="Sort By">Sort Products</option>
+                        <option value="Sort By Price" id="price">Sort By Price</option>
+                        <option value="Sort By A-Z" id="az">Sort By A-Z</option>
+                        <option value="Sort By Z-A" id="az">Sort By Z-A</option>
+                    </select>
+                        
                     </a></li>
                 <li class="category-item">
                     <form class="form-inline">
@@ -34,5 +39,5 @@
     <% temp=all %>
     <%- include ../layout/product_view2 %>
 </div>
-<% block('script','<script src="javascripts/home.js"></script>') -%>
-<% block('stylesheets','<link rel="stylesheet" href="stylesheets/category.css" />' + '<link rel="stylesheet" href="stylesheets/productview.css" />') -%>
+<% block('script','<script src="/javascripts/home.js"></script>') -%>
+<% block('stylesheets','<link rel="stylesheet" href="/stylesheets/category.css" />' + '<link rel="stylesheet" href="stylesheets/productview.css" />') -%>

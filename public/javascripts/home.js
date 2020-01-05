@@ -41,7 +41,7 @@ function updateDate(time) {
         if (time.m < 10) {
             if (time.s < 10) {
                 d = "0" + time.h + ":0" + time.m + ":0" + time.s;
-            } else {
+            } else {    
                 d = "0" + time.h + ":0" + time.m + ":" + time.s;
             }
         } else {
@@ -105,3 +105,10 @@ pik = setInterval(function () {
         $(this).text(time[index]);
     });
 }, 1000)
+
+document.getElementById("textSearch").addEventListener("keyup", function (event) {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+        document.getElementById("btnSearch").click();
+    }
+});

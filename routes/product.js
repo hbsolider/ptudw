@@ -16,13 +16,40 @@ var multer = require('multer');
 var storage = require('../middleWare/multer').storage('./temp', count, false);
 var upload = require('../middleWare/multer').upload(storage).array('file', 6)
 count = 1;
-router.get("/", async(req,res,next) => {
+
+
+router.get("/search", async (req, res) => {
+    const searchInput = req.query.searchInput; 
+    const pSearch = await productManage.search(searchInput)
+    res.render('pages/products',{
+        title: searchInput,
+        all: pSearch,   
+        gb: (values) => gb.getDate(values)
+    })
+  });
+router.get("/my", async (req, res) => {
+    const pMy = await productManage.myproduct(req.user.id);
+    res.render('pages/myproduct',{
+        title: 'My Product',
+        all: pMy,   
+        gb: (values) => gb.getDate(values)
+    })
+  });
+router.get("/watchlist", async (req, res) => {
+    const pFav = await productManage.watchlist(req.user.id);
+    res.render('pages/watchlist',{
+        title: 'Watchlist',
+        all: pFav,   
+        gb: (values) => gb.getDate(values)
+    })
+  });
+
+router.get("/", async (req, res, next) => {
     var cat = req.query.cat;
     let pAll
-    if(typeof cat ==="undefined"){
-        pAll = await productManage.all();
-    }
-    else{
+    if (typeof cat === "undefined") {
+        pAll = await productManage.search('huawei samsung');
+    } else {
         pAll = await productManage.allByCat(cat);
     }
     res.render('pages/products', {

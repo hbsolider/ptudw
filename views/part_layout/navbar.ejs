@@ -1,11 +1,12 @@
-<a id="button"></a>
+
 <div class="container-fluid bg-white">
   <nav class="navbar d-block navbar-expand-lg navbar-white bg-white">
     <div class="d-flex align-items-center container pt-1 pb-2">
       <div class="navbar-brand"><a href="/" class="nav-link">Bidding</a></div>
-      <form class="form-group my-2 mr-4">
-        <input class="form-control mr-md-2 rounded-pill" type="search" aria-describedby="inputGroup-sizing-sm"
-          placeholder="Search" aria-label="Search">
+      <form class="form-inline my-2 mr-4" method="GET" action="/product/search" onsubmit="return clearboxes()">
+        <input class="form-control mr-sm-2 rounded-pill" id="searchInput" name="searchInput" type="search"
+          aria-describedby="inputGroup-sizing-sm" placeholder="Search" aria-label="Search">
+        <button class="btn-danger" type="submit" onclick="searchChange()"><i class="fa fa-search" aria-hidden="true"></i></button>
       </form>
       <div class="nav-user align-middle ml-4 ml-auto">
         <% if (typeof user != "undefined") { %>
@@ -56,6 +57,12 @@
         </li>
         <li class="nav-item hvr-underline-from-center">
           <a class="nav-link " href="#">hot deal</a>
+        </li>
+        <li class="nav-item hvr-underline-from-center">
+          <a class="nav-link " href="/product/watchlist">watchlist</a>
+        </li>
+        <li class="nav-item hvr-underline-from-center">
+          <a class="nav-link " href="/product/my">my product</a>
         </li>
         <li class="nav-item hvr-underline-from-center">
           <a class="nav-link" href="/about">about</a>
