@@ -10,7 +10,7 @@
                     </div>
                 </div>
                 <div class="col-sm-4 align-items-center ">
-                    <button type="submit" class="btn btn-primary m-4 mb-auto mr-auto">Submit</button>
+                    <button type="submit" class="btn btn-primary m-4 mb-auto mr-auto">Add</button>
                 </div>
             </div>
 
@@ -54,11 +54,8 @@
         idd = '#' + `${id}`;
         $(idd).removeAttr('disabled');
         $('#edit' + `${id} `).removeClass('btn-primary');
-        $('#edit' + `${id} i`).removeClass('fa-edit');
         $('#edit' + `${id} `).addClass('btn-success')
-        $('#edit' + `${id} i`).addClass('fa-check-square')
-        $(idd).prop('onclick',null);
-        $(idd).attr('onClick', 'test2(id);');
+        
     }
     function test2(id){
         console.log(id);

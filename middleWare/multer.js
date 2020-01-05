@@ -5,9 +5,7 @@ module.exports = {
     storage: (destination,count,isAva) => multer.diskStorage({
         destination: function (req, file, cb) {
             var dir = destination;
-            if (!fs.existsSync(dir)) {
-                fs.mkdirSync(dir);
-            }
+            fse.mkdirs(dir);
             cb(null, destination)
         },
 

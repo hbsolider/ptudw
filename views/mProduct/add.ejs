@@ -29,7 +29,7 @@
     </div>
     <div class="col-md-sm-12">
         <%- include('../part_layout/message') %>
-        <form action="add" method="POST" enctype="multipart/form-data">
+        <form id="formadd" action="add" method="POST" enctype="multipart/form-data">
             <div class="row">
 
                 <div class="col-md-6">
@@ -113,4 +113,34 @@
             console.log(selectedCountry)
         }
     })
+    //check product name
+    var check = 0
+    $("#nameProduct, #category, #priceStart, #timeExist , textarea").blur(()=>{
+        if(!this.value){
+            if(check === 0){
+                check = 0
+            }else{
+                check--
+            }
+            warning("Mục này không được trống","warning");
+        }else{
+            check++;
+        }
+    })
+    $("#formadd").submit(()=>{
+        if(check ===5 ){
+            warning("Success", "success");
+            return true;
+        }else{
+            warning("Bạn chưa điền đầy đủ thông tin");
+            return false;
+        }
+    })
+    function warning(text,icon){
+        Swal.fire({
+            text:text,
+            icon: icon||"warning",
+            timer:1000,
+        })
+    }
 </script>

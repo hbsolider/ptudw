@@ -11,15 +11,14 @@ router.use(isAdmin);
 router.get('/category', async (req, res, next) => {
     const allCate = await mCategory.all();
     res.render('admin/category', {
-        title: 'Admin Manager',
         category: allCate,
         message: req.flash('error')
     });
 })
 //user
-router.get('/admin/user',async(req,res,next)=>{
+router.get('/alluser',async(req,res,next)=>{
     var users = await User.all();
-    res.render('')
+    res.render('admin/user',{user: users,message: req.flash('error')});
 })
 //Category
 router.post('/category/add', async (req, res, next) => {
@@ -42,5 +41,13 @@ router.post('/category/delete/:id', async (req, res, next) => {
 })
 router.get('/', (req, res, next) => {
     res.redirect('/admin/category');
+})
+//get notification
+router.get('/ajaxgetnotify',async(req,res,next)=>{
+    const row = await User.getnoti();
+    res.send({
+        amoutNoti: row.length,
+        row: row
+    })
 })
 module.exports = router;

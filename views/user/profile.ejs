@@ -1,15 +1,17 @@
 <% layout('_layouts/main') -%>
 <% block('stylesheets','<link rel="stylesheet" href="/stylesheets/profile.css" />') -%>
 <div class="container emp-profile">
-    <form method="POST" action="update" enctype="multipart/form-data">
+    <form method="POST" action="updateavatar" enctype="multipart/form-data">
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-img">
                     <img src="/avatar/<%= profile.id %>/avatar.jpeg" alt="" />
                     <div class="file btn btn-lg btn-primary">Change Photo<input type="file" name="avatar" />
+                       
                     </div>
                 </div>
             </div>
+             <button type="submit">submit </button>
             <div class="col-md-6">
                 <div class="profile-head">
                     <h5><%= profile.username %></h5>
@@ -30,7 +32,8 @@
                 </div>
             </div>
             <div class="col-md-2">
-                <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile" />
+                <button onclick="edit()" class="btn edit" name="btnAddMore" type="button">Edit
+                    Profile</button>
             </div>
         </div>
         <div class="row">
@@ -80,7 +83,8 @@
                                 <label>Permission</label>
                             </div>
                             <div class="col-md-6">
-                                <% if (profile.permission==0) { %> <p>Người dùng mặc định/ Có thể đấu giá</p> <% } %>
+                                <% if (profile.permission==0) { %> <p>Người dùng mặc định/ Có thể đấu giá <br> <a
+                                        href="#" id="changeRole">Thay đổi </a></p> <% } %>
                                 <% if (profile.permission==1) { %> <p>Có thể đấu giá/ Đăng bán sản phẩm</p> <% } %>
                                 <% if (profile.permission==2) { %> <p>Admin</p> <% } %>
                             </div>
@@ -147,22 +151,87 @@
         });
 
         $("input[type=file]").change(function () {
-            console.log('hihi')
             readURL(this);
+            
         });
+        
     });
-    $(window).load(function() {
-		// Animate loader off screen
-		console.log('hjihi')
-	});
+
     function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
             reader.onload = function (e) {
                 $('.profile-img img').attr('src', e.target.result);
+                $(".file").html("Upload").click(()=>{
+                    $.ajax({
+                        method:"POST",
+                        url: "http://localhost:3000/user/updateavatar",
+                        success: ()=>{
+                            Swal.fire({
+                                icon:"success",
+                                text:"Success",
+                                timer:1000
+                            },()=>{
+                                location.reload();
+                                tr.hide();
+                            })
+                        }
+                    })
+                });
             }
-            console.log('hiha')
             reader.readAsDataURL(input.files[0]);
+            
         }
+        $(".file").addClass("bg-info").html("Wating for upload");
+ 
+    }
+    //edit profile
+    function edit() {
+        $(".edit").addClass('submit btn-warning')
+            .html("Save");
+        $(".submit").prop("onclick", null).off("click")
+        .click(()=>{
+            Swal.fire({
+                title:"Cập nhật thành công",
+                icon:"success",
+                timer:"1000"
+            },()=>{
+                location.reload();
+                tr.hide();
+            })
+        })
+    }
+    //change permission
+    $('#changeRole').click(() => {
+        changeRole();
+    })
+
+    function changeRole() {
+        Swal.fire({
+            title: "Notify",
+            text: "Xin cấp quyền thành seller",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: 'Yes',
+            cancelButtonText: 'Cancel'
+        }).then((result) => {
+            if (result.value) {
+
+                $.ajax({
+                    method: "POST",
+                    data: {
+                        iduser: <%= profile.id %>,
+                        text: "Xin cấp quyền",
+                        idread: 0
+                    },
+                    url: "http://localhost:3000/user/updateseller",
+                    dataType: "json",
+                    success: (data) => {
+                        console.log(data);
+                    }
+                })
+            }
+
+        })
     }
 </script>

@@ -13,8 +13,13 @@ let count =1;
 var multer = require('multer');
 var storage = require('../middleWare/multer').storage('./temp',count, false);
 var upload = require('../middleWare/multer').upload(storage).array('file', 6)
-count =1;
 router.get("/", function (req, res, next) {
+    console.log(req.query.cate)
+    res.render('pages/products', {
+        title: 'Products'
+    });
+})
+router.get("/product?cate=:id", function (req, res, next) {
     res.render('pages/products', {
         title: 'Products'
     });
@@ -59,7 +64,7 @@ router.post("/add", (req, res, next) => {
                 nameProduct: req.body.nameProduct,
                 category: req.body.category,
                 priceStart: req.body.priceStart,
-                priceExpect: req.body.priceExpect,
+                priceExpect: parseInt(req.body.priceExpect),
                 transpotMethod: req.body.transpotMethod,
                 detail: req.body.detail,
                 dateUp: curr,
@@ -67,20 +72,20 @@ router.post("/add", (req, res, next) => {
                 idSeller: req.user.id,
                 imageDot: ""
             });
-            const result = await productManage.add(newProduct);
-            if (result.length == 0) {
-                req.flash('error', 'Thêm thất bại');
-                return res.redirect('/product/add');
-            }
-            var newDir = './public/uploads/' + `${result.insertId}`;
-            fse.copy('./temp', newDir, err => {
-                if (err) return console.error(err)
-                else {
-                    console.log('success!');
-                    deleteTemp();
-                }
+            // const result = await productManage.add(newProduct);
+            // if (result.length == 0) {
+            //     req.flash('error', 'Thêm thất bại');
+            //     return res.redirect('/product/add');
+            // }
+            // var newDir = './public/uploads/' + `${result.insertId}`;
+            // fse.copy('./temp', newDir, err => {
+            //     if (err) return console.error(err)
+            //     else {
+            //         console.log('success!');
+            //         deleteTemp();
+            //     }
 
-            })
+            // })
             return res.redirect("/product/add")
         }
         // Everything went fine.

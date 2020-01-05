@@ -6,6 +6,8 @@ const islog = require('../models/isAuth');
 const fs = require('fs');
 const fse = require('fs-extra');
 const multer = require('multer');
+const faker = require('faker');
+const bcrypt = require('bcryptjs');
 //up load avatar
 var storage = require('../middleWare/multer').storage('./temp', null, true);
 var upload = require('../middleWare/multer').upload(storage).fields([{
@@ -13,7 +15,7 @@ var upload = require('../middleWare/multer').upload(storage).fields([{
   maxCount: 1
 }]);
 
-router.post('/update', islog,(req, res, next) => {
+router.post('/updateavatar', islog, (req, res, next) => {
   upload(req, res, (err) => {
     if (err instanceof multer.MulterError) {
       console.log("Loi upload");
@@ -22,13 +24,12 @@ router.post('/update', islog,(req, res, next) => {
       console.log("have problem");
       return;
     }
-    
     var newDir = './public/avatar/' + `${req.user.id}`;
     fse.copy('./temp', newDir, err => {
       if (err) return console.error(err)
       else {
         console.log('success!');
-        deleteTemp('./temp');
+        //deleteTemp('./temp');
       }
 
     })
@@ -63,7 +64,6 @@ router.post('/signin', passport.authenticate('local-signin', {
   failureFlash: true
 }))
 router.get('/profile', islog, (req, res, next) => {
-  
   res.render('user/profile', ({
     title: "Profile",
     profile: req.session.profile
@@ -78,15 +78,32 @@ router.get('/logout', (req, res, next) => {
   req.logOut();
   res.redirect('/');
 })
+router.post('/clone',async(req, res, next) => {
+  var password = faker.internet.password();
+  var salt = bcrypt.genSaltSync(10);
+  var hash = bcrypt.hashSync(password, salt);
+  var user = {
+    email: faker.internet.email(),
+    password:password,
+    username: faker.name.findName(),
+    permission: Math.floor(Math.random()*2),
+    ranking:Math.floor(Math.random()*11),
+    userphone: faker.phone.phoneNumber()
+  }
+  var result = await User.add(user);
+  res.redirect('/admin/alluser');
+})
 /* GET users listing. */
 router.get('/', function (req, res, next) {
   res.redirect('/user/profile');
 });
 
-function deleteTemp(temp) {
-  fse.remove(temp, err => {
-      if (err) return console.error(err);
-      console.log('deleted temp');
-  })
-}
+//create notify
+router.post('/updateseller',async(req,res,next)=>{
+ 
+  var result = await User.updatePer(req.body);
+  res.send(result);
+})
+
+
 module.exports = router;

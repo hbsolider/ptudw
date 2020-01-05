@@ -1,0 +1,61 @@
+<% layout('_layouts/admin') -%>
+<div class="row">
+    <div class="col-md-12">
+        <form method="POST" action="/user/clone">
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="form-group">
+                        <label for="category">User</label>
+                    </div>
+                </div>
+                <div class="col-sm-4 align-items-center ">
+                    <button type="submit" class="btn btn-primary m-4 mb-auto mr-auto" onsubmit="createClone()">Create
+                        Clone</button>
+                </div>
+            </div>
+
+        </form>
+        <%- include('../part_layout/message') %>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <form method="post">
+            <table class="table text-center ">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Email</th>
+                        <th>Username</th>
+                        <th>Permission</th>
+                        <th>Ranking</th>
+                    </tr>
+                </thead>
+                <% user.forEach(function(user){ %>
+                <thead>
+                    <tr class="align-items-center">
+                        <th><%= user.id %></th>
+                        <th><%= user.email %></th>
+                        <th><%= user.username %></th>
+                        <th><%= user.permission %></th>
+                        <th><%= user.ranking %></th>
+                        <th><button class="btn btn-danger btn-sm" type="submit"
+                                formaction="/admin/category/delete/<%= user.id%>"><i
+                                    class="fas fa-trash-alt"></i></button>
+                            <button class="btn btn-primary btn-sm" type="button" onclick="edit(<%= user.id%>)"
+                                id="edit<%= user.id%>"><i class="fas fa-edit"></i></button>
+                        </th>
+
+                    </tr>
+                </thead>
+                <% }) %>
+            </table>
+        </form>
+
+    </div>
+</div>
+<script>
+    function edit(id){
+        Swal.fire('Hello world!')
+    }
+</script>

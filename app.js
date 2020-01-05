@@ -1,9 +1,10 @@
+require('dotenv').config();
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var flash = require('connect-flash');
-require('dotenv').config()
+
 //passport 
 var passport = require('passport');
 //
@@ -55,7 +56,7 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use('/', indexRouter);
+app.use('/', indexRouter); //localhost/
 app.use('/user', usersRouter);
 app.use('/admin', adminRouter);
 app.use('/product', productRouter);
