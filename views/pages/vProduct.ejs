@@ -1,14 +1,14 @@
 <% layout('_layouts/main') -%>
 <% block('stylesheets','<link rel="stylesheet" href="/stylesheets/vProduct.css" />' + '<link rel="stylesheet" href="/stylesheets/lightbox.css">') -%>
 
-<% block('script', '<script src="/javascripts/zoomsl.js"></script>') -%>
-<% block('script', '<script src="/javascripts/script.js"></script>') -%>
+<% block('script', '<script src="/javascripts/vProduct.js"></script>') -%>
+<% block('script', '<script src="/javascripts/script    .js"></script>') -%>
 
 <div class="container mt-4">
     <div class="card">
         <div class="row">
             <aside class="col-sm-5">
-                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carouselExampleIndicators">
                     <ol class="carousel-indicators" style="width: auto">
                         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"><img
                                 src="/images/ip112.jpg"></li>
@@ -111,11 +111,11 @@
                         <header class="smallUpperHeader placeBidText">Place your bid:</header>
                         <div class="placeBid">
                             <span class="bidding_box_fancy">
-                                <em><button type="button" class="decreaseBid" id="moins">-</button></em>
+                                <em><button type="button" class="decreaseBid" id="down" onclick="down();">-</button></em>
                                 <span class="BidValue">
-                                    <div id="NewBidText" class="CustomSelect">100K</div>
+                                    <input type="text" id="NewBidText" class="CustomSelect" value="100"/>                 
                                 </span>
-                                <em><button type="button" class="increaseBid" id="plus">+</button></em>
+                                <em><button type="button" class="increaseBid" id="up" onclick="up();">+</button></em>
                             </span>
                             <span class="bidding_button">
                                 <div class="btnHammer"></div>

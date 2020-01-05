@@ -2,10 +2,10 @@ const mysql = require('mysql');
 const util = require('util');
 const pool = mysql.createPool({
   connectionLimit: 100,
-  host: process.env.DB_HOST,
+  host: 'localhost',
   port: 3306,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASS,
+  user: 'root',
+  password: 'Cuongyeu1',
   database: 'mydb_auction',
   multipleStatements:true
 });

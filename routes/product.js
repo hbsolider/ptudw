@@ -6,24 +6,31 @@ const passport = require('passport');
 const isLog = require('../models/isAuth');
 const productManage = require('../models/product_manage')
 const moment = require('moment')
+
+const gb = require('../config/globalF-V');
 router.use(isLog);
 
 //for image
-let count =1;
+let count = 1;
 var multer = require('multer');
-var storage = require('../middleWare/multer').storage('./temp',count, false);
+var storage = require('../middleWare/multer').storage('./temp', count, false);
 var upload = require('../middleWare/multer').upload(storage).array('file', 6)
-count =1;
-router.get("/", function (req, res, next) {
+count = 1;
+router.get("/", async(req,res,next) => {
+    var cat = req.query.cat;
+    let pAll
+    if(typeof cat ==="undefined"){
+        pAll = await productManage.all();
+    }
+    else{
+        pAll = await productManage.allByCat(cat);
+    }
     res.render('pages/products', {
-        title: 'Products'
+        title: 'Products',
+        all: pAll,
+        gb: (values) => gb.getDate(values)
     });
 })
-router.get('/demo', (req, res, next) => {
-    res.render('pages/vProduct', {
-        title: 'demo'
-    });
-});
 //các thao tác liên quan đến sản phẩm
 //thêm sản phẩm
 router.get("/add", function (req, res, next) {
@@ -34,7 +41,7 @@ router.get("/add", function (req, res, next) {
 })
 router.post("/add", (req, res, next) => {
     upload(req, res, async (err) => {
-        let count =1;
+        let count = 1;
         if (err instanceof multer.MulterError) {
             req.flash('error', 'Tải lên tối đa 6 ảnh');
             return res.redirect("/product/add");
@@ -86,6 +93,13 @@ router.post("/add", (req, res, next) => {
         // Everything went fine.
     })
 })
+
+router.get('/demo', (req, res, next) => {
+    res.render('pages/vProduct', {
+        title: 'demo'
+    });
+});
+
 
 function imagesrc(req, id) {
 

@@ -11,11 +11,11 @@
     <div class="row mt-2">
         <div class="col-sm-12">
             <ul class="category-show list-unstyled d-flex ">
-                <li class="category-item"><a href="/product" class="category-link active">All Products</a></li>
-                <li class="category-item"><a href="/product?cat=1" class="category-link">Phone</a></li>
-                <li class="category-item"><a href="/product?cat=2" class="category-link">Laptop</a></li>
-                <li class="category-item"><a href="/product?cat=" class="category-link">Desktop</a></li>
-                <li class="category-item"><a href="/product?cat=" class="category-link">Other</a></li>
+                <li class="category-item"><a href="" class="category-link active">All Products</a></li>
+                <li class="category-item"><a href="" class="category-link">Phone</a></li>
+                <li class="category-item"><a href="" class="category-link">Laptop</a></li>
+                <li class="category-item"><a href="/product/3" class="category-link">Desktop</a></li>
+                <li class="category-item"><a href="/product/4" class="category-link">Other</a></li>
                 <li class="category-item ml-auto"><a href="" class="categorylink">
                         <span>Sort By</span>
                         <i class="fas fa-sort-amount-down-alt pt-2"></i>
@@ -31,8 +31,8 @@
     </div>
 </div>
 <div class="container">
-    <% temp=all %>
+    <% temp = products %>
     <%- include ../layout/product_view2 %>
 </div>
-<% block('script','<script src="javascripts/home.js"></script>') -%>
-<% block('stylesheets','<link rel="stylesheet" href="stylesheets/category.css" />' + '<link rel="stylesheet" href="stylesheets/productview.css" />') -%>
+<% block('script','<script src="../javascripts/home.js"></script>') -%>
+<% block('stylesheets','<link rel="stylesheet" href="../stylesheets/category.css" />' + '<link rel="stylesheet" href="../stylesheets/productview.css" />') -%>
