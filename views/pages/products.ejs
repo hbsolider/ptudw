@@ -12,24 +12,23 @@
         <div class="col-sm-12">
             <ul class="category-show list-unstyled d-flex ">
                 <li class="category-item"><a href="/product" class="category-link active">All Products</a></li>
-                <li class="category-item"><a href="&?cat=1" class="category-link">Phone</a></li>
+                <li class="category-item"><a href="?cat=1" class="category-link">Phone</a></li>
                 <li class="category-item"><a href="?cat=2" class="category-link">Laptop</a></li>
                 <li class="category-item"><a href="?cat=3" class="category-link">Desktop</a></li>
                 <li class="category-item"><a href="?cat=4" class="category-link">Other</a></li>
-                <li class="category-item ml-auto"><a href="" class="categorylink">
-                    <select id="sorting" onchange="selectionChange()">
-                        <option value="Sort By">Sort Products</option>
-                        <option value="Sort By Price" id="price">Sort By Price</option>
-                        <option value="Sort By A-Z" id="az">Sort By A-Z</option>
-                        <option value="Sort By Z-A" id="az">Sort By Z-A</option>
-                    </select>
-                        
-                    </a></li>
-                <li class="category-item">
-                    <form class="form-inline">
-                        <input class="form-control mr-sm-2 " type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                    </form>
+                <li class="category-item ml-auto">
+                    <div class="store-filter clearfix">
+                        <div class="store-sort">
+                            <label>
+                                Sort By:
+                                <select class="input-select " id="mySelect" onchange="selectedSort()">
+                                    <option value="" style = "display:none" disabled selected>Sắp theo</option>
+                                    <option value="endDate">Sắp hết</option>
+                                    <option value="priceASC">Giá tăng</option>
+                                    <option value="priceDESC">Giá giảm</option>
+                                </select>
+                            </label>
+                        </div>
                 </li>
             </ul>
         </div>

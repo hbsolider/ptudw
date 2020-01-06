@@ -9,6 +9,8 @@ module.exports = {
     myproduct: userId => db.load(`select a.* from product as a,users as b where a.idSeller = b.id and b.id=${userId}`) ,
     watchlist: userId => db.load(`select a.* from product as a,watchlist as b where a.id = b.id_product and b.id_user=${userId}`) ,
     search: textSearch => db.load(`select * from product where nameProduct like '%${textSearch}%'`),  
+    pageBySearch: (textSearch,offset) => db.load(`select * from product where nameProduct like ('%${textSearch}%') limit ${config.paginate.limit} offset ${offset}`),  
+    pageBySort: sql => db.load(`${sql}`),
     allbyTime: ()=>db.load('select * from product order by dateUp'),
     allByCat:  catId => db.load(`select * from product where category = ${catId}`),
     productbyId: id => db.load(`select * from product where id = ${id}`),
@@ -28,5 +30,5 @@ module.exports = {
         const rows = await db.load(`select count(*) as total from product`)
         return rows[0].total;
       },
-    pageByCat: (catId,offset) => db.load(`select * from product where category = ${catId} limit ${config.paginate.limit} offset ${offset}`), 
+    pageByCat: (catId,offset) => db.load(`select * from product where category = ${catId} limit ${config.paginate.limit} offset ${offset}`),
 }
