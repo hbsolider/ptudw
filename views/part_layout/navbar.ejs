@@ -48,8 +48,13 @@
       <div class="container ">
       <div class="collapse p-2 navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav">
-        <li class="nav-item   ">
+        <li class="nav-item dropdown">
           <a href="/product" class="nav-link dropdown-toggle">category</a>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <% cate.forEach(e => {%>
+              <a class="hvr-underline-from-center dropdown-item" href="/product?cat=<%= e.id %>"><%= e.categoryname %> </a>
+            <%})%> 
+          </div>
         </li>
         <li class="nav-item ml-1 hvr-underline-from-center">
           <a class="nav-link " href="/"><i class="fas fa-home"></i></a>
@@ -67,7 +72,7 @@
 
       </ul>
       <div class=" ml-auto"></div>
-      <a class="cart-btn nav-link hvr-grow" href="#"><i class="fas fa-cart-plus mr-2 fa-lg"></i>Cart<span class="cart-items badge badge-danger align-top">1</span></a>
+      <a class="cart-btn nav-link hvr-grow" href="#"><i class="fas fa-cart-plus mr-2 fa-lg"></i>Cart<span class="cart-items badge badge-danger align-top"></span></a>
       
     </div>
     </div>
@@ -80,17 +85,21 @@
       </span>
       <h2>Your Cart</h2>
       <div class="cart-content">
-          <div class="cart-item">
+        <% if (typeof user != "undefined") { %>
+              <% list.forEach(element => {%>
+            <div class="cart-item">
             <img src="/images/ip111.jpg" alt="product"/>
             <div>
-              <h5><b>Iphone 11</b></h5>
-              <h4 style="color: red;"><span>Your price : $<span class = "bid_price"> 999.00</h4>
+              <h5><b><%= element.nameProduct %></b></h5>
+              <h4 style="color: red;"><span>Now price : $<span class = "bid_price"> <%= element.nowprice %> </h4>
               <h4>Current price: $ <span class = "highest_price">1125.00</span></h4>
               <p></p>
               <h4 >Time left: <span class = "time_left">1 day</span></h4>
             </div>
-            <button type="button" class="remove-item btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> </button>
+            <button type="button" class="remove-item btn btn-danger" onclick="deleteitem(<%= element.id %>)"><i class="fa fa-trash" aria-hidden="true"></i> </button>
           </div>
+          <%})%>
+          <%}%>
           <div class="cart-footer">
             <h3>Your total : $ <span class="cart-total">999.00</span></h3>
             <button type="button" class="clear-cart btn btn-warning">Clear cart</button>

@@ -59,7 +59,7 @@ router.get('/signup', (req, res, next) => {
 })
 
 router.post('/signin', passport.authenticate('local-signin', {
-  successRedirect: '/product/add',
+  successRedirect: '/product',
   failureRedirect: '/user/signin',
   failureFlash: true
 }))
@@ -78,16 +78,16 @@ router.get('/logout', (req, res, next) => {
   req.logOut();
   res.redirect('/');
 })
-router.post('/clone',async(req, res, next) => {
+router.post('/clone', async (req, res, next) => {
   var password = faker.internet.password();
   var salt = bcrypt.genSaltSync(10);
   var hash = bcrypt.hashSync(password, salt);
   var user = {
     email: faker.internet.email(),
-    password:password,
+    password: password,
     username: faker.name.findName(),
-    permission: Math.floor(Math.random()*2),
-    ranking:Math.floor(Math.random()*11),
+    permission: Math.floor(Math.random() * 2),
+    ranking: Math.floor(Math.random() * 11),
     userphone: faker.phone.phoneNumber()
   }
   var result = await User.add(user);
@@ -99,11 +99,33 @@ router.get('/', function (req, res, next) {
 });
 
 //create notify
-router.post('/updateseller',async(req,res,next)=>{
- 
+router.post('/updateseller', async (req, res, next) => {
+
   var result = await User.updatePer(req.body);
   res.send(result);
 })
-
+router.get('/getmylist', async (req, res, next) => {
+  if(typeof req.user =="undefined") {
+    return res.send({nonuser: true});
+  }
+  else{
+    result = await User.loadmylist(req.user.id);
+    req.session.list =result;
+    return res.send({
+      length: result.length,
+      empty: result.length === 0,
+    });
+  }
+})
+router.post('/deleteitem',async(req,res,next)=>{
+  entity={
+    idproduct: req.body.id,
+    iduser: req.user.id
+  }
+  console.log(entity)
+  result = await User.cleariteminmylist(req.body.id,req.user.id);
+  
+  res.send({check:true});
+})
 
 module.exports = router;

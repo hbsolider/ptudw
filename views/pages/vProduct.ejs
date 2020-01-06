@@ -2,20 +2,28 @@
 <% block('stylesheets','<link rel="stylesheet" href="/stylesheets/vProduct.css" />' + '<link rel="stylesheet" href="/stylesheets/lightbox.css">') -%>
 
 <% block('script', '<script src="/javascripts/vProduct.js"></script>') -%>
-<% block('script', '<script src="/javascripts/script    .js"></script>') -%>
-
+<% block('script', '<script src="/javascripts/zoomsl.js"></script>') -%>
+<% block('script', '<script src="/javascripts/script.js"></script>') -%>
+<% if (!empty) {%>
+<%- include('../part_layout/notfound') %>
+<%}else{%>
 <div class="container mt-4">
+    <input type="hidden" id="productid" value="<%= product.id %>">
     <div class="card">
         <div class="row">
             <aside class="col-sm-5">
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carouselExampleIndicators">
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carouselExampleIndicators">
                     <ol class="carousel-indicators" style="width: auto">
                         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"><img
                                 src="/images/ip112.jpg"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="1" data-lightbox="1"><img src="/images/ip111.jpg"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="2"><img src="/images/alien42.jpg"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="3"><img src="/images/laptop.jpg"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="4"><img src="/images/iphone11.jpg"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1" data-lightbox="1"><img
+                                src="/images/ip111.jpg"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="2"><img src="/images/alien42.jpg">
+                        </li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="3"><img src="/images/laptop.jpg">
+                        </li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="4"><img src="/images/iphone11.jpg">
+                        </li>
                     </ol>
                     <div class="carousel-inner align-self-center ">
                         <div class="carousel-item active">
@@ -46,7 +54,7 @@
             </aside>
             <aside class="col-sm-7">
                 <article class="card-body">
-                    <h3 class="title mb-3">PRODUCT NAME</h3>
+                    <h3 class="title mb-3"><%= product.nameProduct %></h3>
                     </p> <!-- price-detail-wrap .// -->
                     <section id="endsInTime">
                         <div class="AuctionTimer">
@@ -89,17 +97,21 @@
                         <section id="bidInfo">
                             <div class="row">
                                 <div class="col-auto">
-                                    <header class="smallUpperHeader">Current Bid:</header>
+                                    <header class="smallUpperHeader">Current Bid Price:</header>
                                     <main id="currentBidText">
                                         <span class="cBid">
-                                            1.000K &#8363;
+                                            <%= product.nowprice %>
                                         </span></main>
                                 </div>
                                 <div class="col-auto">
                                     <header class="smallUpperHeader">Current Winner:</header>
                                     <main id="currentBidText">
                                         <span class="cBid">
-                                            Bidder's name
+                                            <%if (namebidCurrent == null) {%>
+                                              Hiện chưa có ai đấu giá 
+                                            <%}else{%>
+                                                <%= namebidCurrent %>
+                                            <%}%>
                                         </span></main>
                                 </div>
                             </div>
@@ -111,15 +123,16 @@
                         <header class="smallUpperHeader placeBidText">Place your bid:</header>
                         <div class="placeBid">
                             <span class="bidding_box_fancy">
-                                <em><button type="button" class="decreaseBid" id="down" onclick="down();">-</button></em>
+                                <em><button type="button" class="decreaseBid" id="down"
+                                        onclick="down();">-</button></em>
                                 <span class="BidValue">
-                                    <input type="text" id="NewBidText" class="CustomSelect" value="100"/>                 
+                                    <input type="text" id="NewBidText" class="CustomSelect" value="100" />
                                 </span>
                                 <em><button type="button" class="increaseBid" id="up" onclick="up();">+</button></em>
                             </span>
                             <span class="bidding_button">
                                 <div class="btnHammer"></div>
-                                <a class="buttons bidding large" href="">
+                                <a class="buttons bidding large" href="#">
                                     <span>Place bid</span>
                                 </a>
                             </span>
@@ -164,9 +177,7 @@
                     <h3>
                         Product Description</h3>
                     <p>
-                        <span id="ContentPlaceHolder1_lbDescription">- Motorcycle hand guards with LED turn signal
-                            lights.<br>- Modes : Daytime running light (White light) / Turn signal light (Amber)<br>-
-                            Material : ABS<br>- Size : 12.6 x 8.8 x 24.5 cm.<br>- Contain : 2 pieces / set.</span>
+                        <textarea id="detail"><%= product.detail %></textarea>
                     </p>
                     <p></p>
                     <p></p>
@@ -185,3 +196,8 @@
         </section>
     </div>
 </div>
+<%}%>
+<script>
+    
+
+</script>

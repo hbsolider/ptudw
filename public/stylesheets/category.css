@@ -31,8 +31,8 @@
     position: absolute;
 }
 .card .card-title {
-    overflow: hidden;
-    max-height: 1.2rem;
+    overflow: unset;
+    max-height: 1.8rem;
     font-size: 1.2rem;
     text-transform: uppercase;
     font-weight: bold;

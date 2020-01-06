@@ -15,8 +15,9 @@
         overflow-x: hidden;
         height: 300px;
     }
-    .custom-file-container__custom-file__custom-file-control__button{
-        background-color: rgb(239,81,81);
+
+    .custom-file-container__custom-file__custom-file-control__button {
+        background-color: rgb(239, 81, 81);
         font-weight: 550;
     }
 </style>
@@ -38,8 +39,13 @@
                         <input type="text" name="nameProduct" id="nameProduct" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="type">Category</label>
-                        <input type="text" name="category" id="category" class="form-control">
+                        <label for="Category">Category</label>
+                        <select class="form-control" id="category" name="category">
+                            <% cate.forEach(function(cat){ %>
+                              <option value="<%= cat.id%>"><%= cat.categoryname %></option>
+                            <% }) %>
+                            
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="price_start">Starting Price</label>
@@ -97,7 +103,7 @@
             selectedCount: 'Files to choose',
         },
     });
-    $('.custom-file-container__custom-file__custom-file-control').click(()=>{
+    $('.custom-file-container__custom-file__custom-file-control').click(() => {
         upload.clearPreviewPanel();
     })
     tinymce.init({
@@ -114,33 +120,42 @@
         }
     })
     //check product name
-    var check = 0
-    $("#nameProduct, #category, #priceStart, #timeExist , textarea").blur(()=>{
-        if(!this.value){
-            if(check === 0){
-                check = 0
-            }else{
-                check--
+    var check = [0,0]
+    let empty = true;
+    $('#nameProduct, #priceStart, #detail').blur((vl)=>{
+        if($(vl.target).val() === ""){
+            warning("Mục này không được để trống")
+            if (vl.target.name==="nameProduct") {
+                check[0]=0
+            }else if (vl.target.name==="priceStart") {
+                check[1]=0
             }
-            warning("Mục này không được trống","warning");
-        }else{
-            check++;
+            
         }
-    })
-    $("#formadd").submit(()=>{
-        if(check ===5 ){
-            warning("Success", "success");
-            return true;
-        }else{
-            warning("Bạn chưa điền đầy đủ thông tin");
-            return false;
+        else{
+            if (vl.target.name==="nameProduct") {
+                check[0]=1
+            }else if (vl.target.name==="priceStart") {
+                check[1]=1
+            }
         }
+        console.log(check)
     })
-    function warning(text,icon){
+    
+    $("#formadd").submit(() => {
+        for(i = 0 ; i <=2 ;i++){
+            if(check[i]===0){
+                warning("Bạn chưa điền đầy đủ thông tin!")
+                return false;
+            }
+        }
+        return true;
+    })
+    function warning(text, icon) {
         Swal.fire({
-            text:text,
-            icon: icon||"warning",
-            timer:1000,
+            text: text,
+            icon: icon || "warning",
+            timer: 1000,
         })
     }
 </script>

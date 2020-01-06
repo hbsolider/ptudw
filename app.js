@@ -46,10 +46,22 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
-
-app.use(function(req, res, next) {
+const Category = require("./models/category");
+const User = require('./models/User');
+app.use(async(req, res, next)=> {
+  //category
+  const cate = await Category.all();
+  req.session.cate = cate;
+  res.locals.cate = req.session.cate;
+  //watch list 
+  res.locals.list = req.session.list;
   //Authentication
   if (req.isAuthenticated()){
+    const result = await User.loadmylist(req.user.id)
+    req.session.list=[];
+    req.session.list = result;
+    res.locals.list = req.session.list;
+
     res.locals.user = req.user;
     res.locals.authenticated = ! req.user.anonymous;
   }
@@ -57,10 +69,10 @@ app.use(function(req, res, next) {
 });
 
 app.use('/', indexRouter); //localhost/
-app.use('/user', usersRouter);
+app.use('/user',usersRouter);
 app.use('/admin', adminRouter);
 app.use('/product', productRouter);
-app.use('/user',usersRouter);
+
 //
 
 // catch 404 and forward to error handler

@@ -120,7 +120,8 @@ h6{
 .card .card-title {
     text-transform: uppercase;
     font-weight: bold;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
+    
 }
 .card-view{
     position: relative;

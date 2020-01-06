@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const mProduct = require('../models/product_manage');
 const User = require('../models/User');
+const Category = require('../models/category');
 const passport = require('passport');
 const islog = require('../models/isAuth');
 const gb = require('../config/globalF-V');
@@ -49,7 +50,8 @@ router.get('/', async(req, res, next)=> {
     title: 'Home',
     time: Object.values(pByTime),
     price:pByPrice,
-    gb:(values)=> gb.getDate(values)
+    gb:(values)=> gb.getDate(values),
+    cate: req.session.cate
   });
   
 });
@@ -57,6 +59,7 @@ router.get('/', async(req, res, next)=> {
 
 //contact
 router.get('/contact', (req, res, next) => {
+  console.log(req.session.cate);
   res.render('pages/contact', {
     title: 'Contact'
   });
@@ -68,6 +71,7 @@ router.get('/about', (req, res, next) => {
   });
 });
 
+//modify
 
 
 module.exports = router;

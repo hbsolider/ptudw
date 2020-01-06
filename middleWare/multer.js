@@ -1,7 +1,7 @@
 const fs = require('fs');
 const multer = require('multer');
 const fse = require('fs-extra');
-module.exports = {
+module.exports ={
     storage: (destination,count,isAva) => multer.diskStorage({
         destination: function (req, file, cb) {
             var dir = destination;
@@ -17,7 +17,7 @@ module.exports = {
             } else {
                 let extArray = file.mimetype.split("/");
                 let extension = extArray[extArray.length - 1];
-                cb(null, `${count++}` + '.jpg')
+                cb(null, Date.now()+'.' + extension)
             }
 
         }

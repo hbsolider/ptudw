@@ -7,7 +7,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta http-equiv="Pragma" content="no-cache">
-  <title><% "Auction"||title %></title>
+  <%if (typeof title !="undefined") {%>
+    <title><%= title %></title>
+  <%}else{%>
+    <title>Auction</title>
+  <%}%>
+  
   <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Montserrat|Crimson+Text&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -103,7 +108,7 @@
   </script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
   </script>
-  <script src="/javascripts/cart.js"></script>
+  <script src="../javascripts/cart.js"></script>
   <%- block('script') %>
 
 </body>
