@@ -16,17 +16,6 @@ var multer = require('multer');
 var storage = require('../middleWare/multer').storage('./temp', count, false);
 var upload = require('../middleWare/multer').upload(storage).array('file', 6)
 count = 1;
-
-
-router.get("/search", async (req, res) => {
-    const searchInput = req.query.searchInput;
-    const pSearch = await productManage.search(searchInput)
-    res.render('pages/products', {
-        title: searchInput,
-        all: pSearch,
-        gb: (values) => gb.getDate(values)
-    })
-});
 router.get("/my", async (req, res) => {
     const pMy = await productManage.myproduct(req.user.id);
     res.render('pages/myproduct', {
@@ -44,36 +33,69 @@ router.get("/watchlist", async (req, res) => {
     })
 });
 router.get("/", async (req, res, next) => {
+    var jsonGet = {};
+    jsonGet = req.query;
+    const urlParams = req.query;
     var cat = req.query.cat;
+    var searchInput = req.query.searchInput;
     var page = req.query.page || 1;
     const limit = config.paginate.limit;
     const page_numbers = [];
     if (page < 1) page = 1;
-    
     const offset = (page - 1) * limit;
+    var sql = "select * from product";
+    
+    
+    if (typeof cat != 'undefined') {
+        sql += ` where category = ${cat}`;
+       
+    } else if (typeof searchInput != 'undefined') {
+        sql += ` where nameProduct like ('%${searchInput}%')`;
+        
+    }
+    console.log(sql);
+    for (const key in jsonGet) {
+        if (key === "endDate" && jsonGet[key] === "true") {
+          sql += " ORDER BY timeExist DESC";
+        } else if (key === "priceASC" && jsonGet[key] === "true") {
+          sql += " ORDER BY priceStart ASC";
+        } else if (key === "priceASC" && jsonGet[key] === "false") {
+          sql += " ORDER BY priceStart DESC";
+        }
+      }
+    sql += ` limit ${config.paginate.limit} offset ${offset}`
+    console.log(sql);
     let [total, rows] = await Promise.all([
         productManage.count(),
-        productManage.page(offset)
+        productManage.pageBySort(sql)
     ])
-    if (typeof cat != 'undefined'){
-        [total, rows] = await Promise.all([
-            productManage.count(),
-            productManage.pageByCat(cat,offset)
-        ])
-    }
+    
     let nPages = Math.floor(total / limit);
     if (total % limit > 0) nPages++;
     for (i = 1; i <= nPages; i++) {
+       
+        urlParams.page = i;
+        let query = "?";
+        for (let key in urlParams) {
+            query += key + "=" + urlParams[key] +"&";
+        }
+        query = query.slice(0,-1);
         page_numbers.push({
-            value: i,
+            value: query,
             isCurrentPage: i === +page
         })
     }
-    let pAll = rows;
-    
+    // 
+    // for (i = 1; i <= nPages; i++) {
+    //     page_numbers.push({
+    //         value: i,
+    //         isCurrentPage: i === +page
+    //     })
+    // }
+    pAll = rows;
     res.render('pages/products', {
         title: 'Products',
-        all: pAll,
+        all: rows,
         gb: (values) => gb.getDate(values),
         page_numbers,
         prev_value: +page - 1,

@@ -1,12 +1,13 @@
 
+<% block('script', '<script src="/javascripts/search.js"></script>') -%>
 <div class="container-fluid bg-white">
   <nav class="navbar d-block navbar-expand-lg navbar-white bg-white">
     <div class="d-flex align-items-center container pt-1 pb-2">
       <div class="navbar-brand"><a href="/" class="nav-link">Bidding</a></div>
-      <form class="form-inline my-2 mr-4" method="GET" action="/product/search">
+      <form class="form-inline my-2 mr-4" method="GET" action="/product"  onsubmit="return clearBoxes()">
         <input class="form-control mr-sm-2 rounded-pill" id="searchInput" name="searchInput" type="search"
           aria-describedby="inputGroup-sizing-sm" placeholder="Search" aria-label="Search">
-        <button class="btn-danger" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+        <button class="btn-danger" type="submit" onclick="searchChange()"><i class="fa fa-search" aria-hidden="true"></i></button>
       </form>
       <div class="nav-user align-middle ml-4 ml-auto">
         <% if (typeof user != "undefined") { %>

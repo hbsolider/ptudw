@@ -106,7 +106,7 @@ pik = setInterval(function () {
     });
 }, 1000)
 
-document.getElementById("textSearch").addEventListener("keyup", function (event) {
+document.getElementById("searchInput").addEventListener("keyup", function (event) {
     event.preventDefault();
     if (event.keyCode === 13) {
         document.getElementById("btnSearch").click();
