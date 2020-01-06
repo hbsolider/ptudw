@@ -1,4 +1,5 @@
 const db = require('../utils/db');
+const config = require('../config/default.json');
 
 module.exports = {
     all: () => db.load('select * from product'),
@@ -12,4 +13,10 @@ module.exports = {
     allByCat:  catId => db.load(`select * from product where category = ${catId}`),
     productByTime: ()=>db.load('select * from product order by dateUp limit 5'),
     productByPrice: ()=>db.load('select * from product order by priceExpect desc limit 5'),
+    page: offset => db.load(`select * from product limit ${config.paginate.limit} offset ${offset}`), 
+    count: async () => {
+        const rows = await db.load(`select count(*) as total from product`)
+        return rows[0].total;
+      },
+    pageByCat: (catId,offset) => db.load(`select * from product where category = ${catId} limit ${config.paginate.limit} offset ${offset}`), 
 }

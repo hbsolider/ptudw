@@ -6,7 +6,7 @@ const passport = require('passport');
 const isLog = require('../models/isAuth');
 const productManage = require('../models/product_manage')
 const moment = require('moment')
-
+const config = require('../config/default.json')
 const gb = require('../config/globalF-V');
 router.use(isLog);
 
@@ -19,43 +19,65 @@ count = 1;
 
 
 router.get("/search", async (req, res) => {
-    const searchInput = req.query.searchInput; 
+    const searchInput = req.query.searchInput;
     const pSearch = await productManage.search(searchInput)
-    res.render('pages/products',{
+    res.render('pages/products', {
         title: searchInput,
-        all: pSearch,   
+        all: pSearch,
         gb: (values) => gb.getDate(values)
     })
-  });
+});
 router.get("/my", async (req, res) => {
     const pMy = await productManage.myproduct(req.user.id);
-    res.render('pages/myproduct',{
+    res.render('pages/myproduct', {
         title: 'My Product',
-        all: pMy,   
+        all: pMy,
         gb: (values) => gb.getDate(values)
     })
-  });
+});
 router.get("/watchlist", async (req, res) => {
     const pFav = await productManage.watchlist(req.user.id);
-    res.render('pages/watchlist',{
+    res.render('pages/watchlist', {
         title: 'Watchlist',
-        all: pFav,   
+        all: pFav,
         gb: (values) => gb.getDate(values)
     })
-  });
-
+});
 router.get("/", async (req, res, next) => {
     var cat = req.query.cat;
-    let pAll
-    if (typeof cat === "undefined") {
-        pAll = await productManage.search('huawei samsung');
-    } else {
-        pAll = await productManage.allByCat(cat);
+    var page = req.query.page || 1;
+    const limit = config.paginate.limit;
+    const page_numbers = [];
+    if (page < 1) page = 1;
+    
+    const offset = (page - 1) * limit;
+    let [total, rows] = await Promise.all([
+        productManage.count(),
+        productManage.page(offset)
+    ])
+    if (typeof cat != 'undefined'){
+        [total, rows] = await Promise.all([
+            productManage.count(),
+            productManage.pageByCat(cat,offset)
+        ])
     }
+    let nPages = Math.floor(total / limit);
+    if (total % limit > 0) nPages++;
+    for (i = 1; i <= nPages; i++) {
+        page_numbers.push({
+            value: i,
+            isCurrentPage: i === +page
+        })
+    }
+    let pAll = rows;
+    
     res.render('pages/products', {
         title: 'Products',
         all: pAll,
-        gb: (values) => gb.getDate(values)
+        gb: (values) => gb.getDate(values),
+        page_numbers,
+        prev_value: +page - 1,
+        next_value: +page + 1,
     });
 })
 //các thao tác liên quan đến sản phẩm

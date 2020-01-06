@@ -34,3 +34,33 @@
     </div>
     <% }); %>
 </div>
+<div class="row mb-2 mt-2">
+    <div class="col-sm-12 ">
+        <nav>
+            <ul class="pagination float-right">
+              <li class="page-item">
+                <a class="page-link" href="?page=<%=prev_value%>">
+                  <i class="fa fa-backward" aria-hidden="true"></i>
+                </a>
+              </li>
+              <%page.forEach((e) => {%>
+              <%if (e.isCurrentPage) {%>
+              <li class="page-item active" aria-current="page">
+                <a class="page-link" href="javascript:;"><%=e.value%> <span class="sr-only">(current)</span></a>
+              </li>
+              <% } else { %>
+                <li class="page-item">
+                <a class="page-link" href="?page=<%=e.value%>"><%=e.value%></a>
+              </li>
+              <% } %>
+              <% });%>
+              <li class="page-item">
+                <a class="page-link" href="?page=<%=next_value%>">
+                  <i class="fa fa-forward" aria-hidden="true"></i>
+                </a>
+              </li>
+            </ul>
+          </nav>
+    </div>
+</div>
+</div>
