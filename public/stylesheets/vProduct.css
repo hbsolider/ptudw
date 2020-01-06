@@ -164,6 +164,7 @@
     box-sizing: border-box;
     text-align: center;
     height: 44px;
+    width: 172px;
 }
 
 .buttons:before {

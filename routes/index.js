@@ -51,6 +51,7 @@ router.get('/', async(req, res, next)=> {
     price:pByPrice,
     gb:(values)=> gb.getDate(values)
   });
+  
 });
 
 
