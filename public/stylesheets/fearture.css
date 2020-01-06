@@ -1,6 +1,6 @@
 @import url(./_var.css);
 
-img {
+.fearture-item img {
     width: 100%;
     height: 100%;
     object-fit: contain;

@@ -9,33 +9,59 @@ const productManage = require('../models/product_manage')
 const User = require('../models/User')
 const Category = require('../models/category')
 const moment = require('moment')
-
+const config = require('../config/default.json')
 const gb = require('../config/globalF-V');
-
+const mail = require('../middleWare/mail');
 //for image
 let count = 1;
 var multer = require('multer');
 var storage = require('../middleWare/multer').storage('./temp', count, false);
 var upload = require('../middleWare/multer').upload(storage).array('file', 6)
-router.get("/", async (req, res, next) => {
-    pAll = await productManage.all();
-    if (typeof req.query.cat != "undefined") return next();
-    res.render('pages/products', {
-        title: 'Products',
-        all: pAll,
+
+router.get("/myproduct", async (req, res) => {
+    const pMy = await productManage.myproduct(req.user.id);
+    res.render('pages/myproduct', {
+        title: 'My Product',
+        all: pMy,
         gb: (values) => gb.getDate(values)
-    });
-})
+    })
+});
+
 router.get("/", async (req, res, next) => {
     var cat = req.query.cat;
-    if (typeof req.query.cat == "undefined") return next();
-    //chưa xử lí trường hợp cat không có trong category
-    pAll = await productManage.allByCat(cat);
+    var page = req.query.page || 1;
+    const limit = config.paginate.limit;
+    const page_numbers = [];
+    if (page < 1) page = 1;
+    
+    const offset = (page - 1) * limit;
+    let [total, rows] = await Promise.all([
+        productManage.count(),
+        productManage.page(offset)
+    ])
+    if (typeof cat != 'undefined'){
+        [total, rows] = await Promise.all([
+            productManage.count(),
+            productManage.pageByCat(cat,offset)
+        ])
+    }
+    let nPages = Math.floor(total / limit);
+    if (total % limit > 0) nPages++;
+    for (i = 1; i <= nPages; i++) {
+        page_numbers.push({
+            value: i,
+            isCurrentPage: i === +page
+        })
+    }
+    let pAll = rows;
+    
     res.render('pages/products', {
         title: 'Products',
         all: pAll,
-        empty: pAll.length === 0,
-        gb: (values) => gb.getDate(values)
+        gb: (values) => gb.getDate(values),
+        page_numbers,
+        prev_value: +page - 1,
+        next_value: +page + 1,
     });
 })
 router.get("/id=:id", async (req, res, next) => {
@@ -45,10 +71,15 @@ router.get("/id=:id", async (req, res, next) => {
     const rows = await productManage.namebidCurrent(id);
     let name
     if (rows.length != 0) {
-        name = rows[0].username;
+        var tmp = rows[0].username;
+        for(i =0 ;i <tmp.length/2-1;i++){
+            tmp = tmp.replace(tmp[i],'*');
+        }
+        name = tmp
     } else {
         name = null
     }
+    console.log(name)
     res.render('pages/vProduct', {
         title: product.nameProduct,
         empty: product.length === 1,
@@ -150,10 +181,10 @@ router.post('/bid', async (req, res, next) => {
         nowprice: product[0].nowprice
     })
 })
+//xác nhận đáu giá và thêm thông báo cho seller 
 router.post('/confirmbid', async (req, res, next) => {
     price = parseInt(req.body.price)
     now = moment(Date.now()).format("YYYY-MM-DD hh:mm:ss");
-    console.log(price);
     entity = {
         idbidder: req.user.id,
         idproduct: req.body.id,
@@ -161,6 +192,15 @@ router.post('/confirmbid', async (req, res, next) => {
         time: now
     }
     await productManage.updateBid(entity)
+    rows = await User.findbyID(req.user.id);
+    notifi={
+        idseller:req.body.idseller,
+        idbidder: req.user.id,
+        idproduct: req.body.id,
+        status: 0
+    }
+    await User.addnotify(notifi);
+    mail.bidderAnnouce(rows[0].email,req.body.nameproduct,price);
     return res.json({
         success: true
     });
@@ -174,7 +214,8 @@ router.post('/addtolist', async (req, res, next) => {
     } else {
         const list = await User.getmylist(req.user.id);
         var idproduct = req.body.idproduct;
-        let check
+        check = await productManage.productbyId(idproduct);
+        if(check[0].idSeller===req.user.id) return res.json({isowner: true});
         if (list.length != 0) {
             for (i = 0; i < list.length; i++) {
                 if(list[i].idproduct===parseInt(req.body.idproduct)){

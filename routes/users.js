@@ -8,6 +8,7 @@ const fse = require('fs-extra');
 const multer = require('multer');
 const faker = require('faker');
 const bcrypt = require('bcryptjs');
+const mail = require('../middleWare/mail');
 //up load avatar
 var storage = require('../middleWare/multer').storage('./temp', null, true);
 var upload = require('../middleWare/multer').upload(storage).fields([{
@@ -127,5 +128,26 @@ router.post('/deleteitem',async(req,res,next)=>{
   
   res.send({check:true});
 })
-
+router.get('/notification',async(req,res,next)=>{
+  let noti;
+  noti = await User.getStoB(req.user.id)
+  if(req.user.permission == 1 || req.user.permission == 2){
+    notiS = await User.getBtoS(req.user.id);
+    return res.send({noti,notiS,check: true});
+  }else{
+    return res.send({noti,check: false})
+  }
+})
+router.post('/accept',async(req,res,next)=>{
+    mail.acceptBidder(req.body.email,req.body.nameProduct);
+    //update status trong notify
+    const result=await User.updateNoti(req.body.id,req.user.id,1);
+    res.send({success: true})
+})
+router.post('/deny',async(req,res,next)=>{
+  mail.denyBidder(req.body.email,req.body.nameProduct);
+  //update status trong notify
+  const result=await User.updateNoti(req.body.id,req.user.id,2);
+  res.send({success: true})
+})
 module.exports = router;

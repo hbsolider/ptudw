@@ -26,7 +26,8 @@ tinymce.init({
 $(".bidding_button").click(() => {
   let id = $('#productid').val();
   let NewBidText = $('#NewBidText').val();
-  console.log(NewBidText)
+  let idseller = $('#idSeller').val();
+  let nameproduct = $('.title').html();
   $.ajax({
     type: "POST",
     url: "http://localhost:3000/product/bid",
@@ -77,7 +78,7 @@ $(".bidding_button").click(() => {
             $.ajax({
               type: "POST",
               url: "http://localhost:3000/product/confirmbid",
-              data: {price: nowprice,id},
+              data: {price: nowprice,id,nameproduct,idseller},
               dataType: "json",
               success: function (response) {
                 if(response.success){

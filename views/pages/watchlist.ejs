@@ -1,0 +1,41 @@
+<% layout('_layouts/main') -%>
+<style>
+    table {
+    counter-reset: tableCount;     
+}
+    .counterCell:before {              
+    content: counter(tableCount); 
+    counter-increment: tableCount; 
+}
+</style>
+<% temp=all %>  
+<div class="container mt-5 mb-5">
+   <table class="table table-hover">
+       <thead>
+           <tr>
+               <th scope="col" style="width: 100px">Order</th>
+               <th scope="col" style="width: 200px;">Product</th>
+               <th scope="col"></th>
+               <th scope="col">Current Price</th>
+               <th scope="col">Time Left</th>
+               <th scope="col">&nbsp</th>
+           </tr>
+       </thead>
+       <tbody>
+            <%temp.forEach((element,i) => {%>
+                <tr>
+                    <th scope="row" class="counterCell"></th>
+                    <td><%= element.nameProduct %></td>
+                    <td><img class="card-img-top" src= "/uploads/<%=element.id%>/1.jpg" style="width:70px; height: 70px;" alt=""></td>
+                    <td><%= element.currentPrice%></td>
+                    <td><%= element.timeExist%></td>
+                    <td class="text-right">
+                        <a name="" id="" class="btn btn-danger" href="#" role="button">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </a>
+                    </td>
+                </tr>
+            <% }); %>
+       </tbody>
+   </table>
+</div> 
