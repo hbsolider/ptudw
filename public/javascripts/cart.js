@@ -9,7 +9,6 @@ const cartContent = document.querySelector(".cart-content");
 
 class UI {
     setupApp() {
-
         cartBtn.addEventListener('click', this.showCart)
         closeCartBtn.addEventListener('click', this.hideCart);
     }
@@ -19,7 +18,6 @@ class UI {
     }
     showCart() {
         //get list 
-        console.log('hihi')
         $.ajax({
             type: "GET",
             url: "http://localhost:3000/user/getmylist",
@@ -91,3 +89,58 @@ function deleteitem(id) {
 }
 
 
+//add to cart
+function addtolist(index) {
+    $.ajax({
+      type: "POST",
+      url: "http://localhost:3000/product/addtolist",
+      data: {
+        idproduct: index
+      },
+      dataType: "json",
+      success: function (response) {
+        if (response.nonuser) {
+          Swal.fire({
+            title: "Bạn cần đăng nhập để thực hiện tính năng này",
+            showConfirmButton: true,
+            confirmButtonText: "Sign in",
+            showCancelButton: true,
+            icon: "warning",
+            timer: 3000
+
+          }).then(result => {
+            if (result.value) {
+              location.href = "http://localhost:3000/user/signin"
+            }
+          })
+        } else if (response.isowner) {
+          Swal.fire({
+            title: "Lỗi",
+            text: "Bạn là người bán sản phẩm này",
+            icon: "warning",
+            timer: 1000
+          })
+        } else if (response.inlist) {
+          Swal.fire({
+            title: "Sản phẩm này đã có sẵn trong dánh sách ưa thích",
+            showConfirmButton: false,
+            cancelButtonText: "I Know",
+            showCancelButton: true,
+            icon: "warning",
+            timer: 2000
+          })
+        } else if (response.result) {
+          Swal.fire({
+            text: "Thêm vào danh sách ưa thích thành công",
+            icon: "success",
+            showCancelButton: false,
+            showConfirmButton: false,
+            timer: 1500
+          }).then(()=>{
+            window.location.reload();
+          })
+        }
+
+      }
+    });
+  }

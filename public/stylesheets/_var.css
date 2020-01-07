@@ -49,6 +49,9 @@ body {
 .card .card-text::before{
     content:'NOW: ';
 }
+.card .card-text::after{
+    content:' VND';
+}
 .heart{
     position: absolute;
     right:0;   

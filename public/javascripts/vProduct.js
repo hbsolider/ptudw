@@ -56,6 +56,15 @@ $(".bidding_button").click(() => {
           timer: 1000
         })
       }
+      if(response.deny){
+        Swal.fire({
+          text: "Bạn đã bị từ chối đấu giá sản phẩm này",
+          icon: "error",
+          showCancelButton: false,
+          cancelButtonColor:'#d33',
+          timer: 1500
+        })
+      }
       if(response.ranking === false){
         Swal.fire({
           title:"Điểm đánh giá quá thấp",

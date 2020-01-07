@@ -15,33 +15,24 @@
             <aside class="col-sm-5">
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carouselExampleIndicators">
                     <ol class="carousel-indicators" style="width: auto">
-                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"><img
-                                src="/images/ip112.jpg"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="1" data-lightbox="1"><img
-                                src="/images/ip111.jpg"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="2"><img src="/images/alien42.jpg">
-                        </li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="3"><img src="/images/laptop.jpg">
-                        </li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="4"><img src="/images/iphone11.jpg">
-                        </li>
+                        <%image.forEach((e,i) => {%>
+                            <%if (i===0) {%>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="<%=i%>" class="active" ><img src="/uploads/<%= product.id%>/<%= e.filename%>"></li>
+                            <%}%>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="<%=i%>"><img src="/uploads/<%= product.id%>/<%= e.filename%>"> </li>
+                        <%})%>
                     </ol>
                     <div class="carousel-inner align-self-center ">
-                        <div class="carousel-item active">
-                            <img src="/images/ip112.jpg" class="d-block">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="/images/ip111.jpg" class="d-block">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="/images/alien42.jpg" class="d-block">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="/images/laptop.jpg" class="d-block">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="/images/iphone11.jpg" class="d-block">
-                        </div>
+                        <%image.forEach((e,i) => {%>
+                            <%if (i===0) {%>
+                                <div class="carousel-item active">
+                                <img src="/uploads/<%= product.id%>/<%= e.filename%>" class="d-block">
+                                </div> 
+                            <%}%>
+                            <div class="carousel-item">
+                            <img src="/uploads/<%= product.id%>/<%= e.filename%>" class="d-block">
+                            </div>  
+                        <%})%>
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -57,16 +48,12 @@
                 <article class="card-body">
                     <h3 class="title mb-3"><%= product.nameProduct %></h3>
                     </p> <!-- price-detail-wrap .// -->
-                    <section id="endsInTime">
+                    <section id="endsInTime mb-4">
                         <div class="AuctionTimer">
-                            <div id="Time">
-                                <p id="hours" class="customShadowBorder">01</p><span>:</span>
-                                <p id="minutes" class="customShadowBorder">02</p><span>:</span>
-                                <p id="seconds" class="customShadowBorder">03</p>
-                            </div>
+                            <h3>Time Left: <span class="text-bold text-danger"><%= date %></span></h3>
+                            
                         </div>
                     </section>
-
                     <div class="sellerBlock">
                         <section id="sellerInfo">
                             <div class="row">
@@ -109,9 +96,9 @@
                                     <main id="currentBidText">
                                         <span class="cBid">
                                             <%if (namebidCurrent == null) {%>
-                                              Hiện chưa có ai đấu giá 
+                                            Hiện chưa có ai đấu giá
                                             <%}else{%>
-                                                <%= namebidCurrent %>
+                                            <%= namebidCurrent %>
                                             <%}%>
                                         </span></main>
                                 </div>
@@ -150,49 +137,41 @@
         </div> <!-- row.// -->
     </div> <!-- card.// -->
     <hr>
-    <div id="productDetailData" class="row contentWrapper whiteBackground padding-10 marginT10 borderGrey">
-        <section class="col-sm-9">
+    <div class="row">
+        <section class="col-sm-12">
             <div class="product_details productData">
                 <h1>Product Details</h1>
-                <div class="contData">
-                    <div style="display: none">
-                        <h3>Product Details</h3>
+                <div class="row">
+                    <div class="col-md-8">
+                        <h3> Product Description</h3>
+                        <div>
+                            <textarea id="detail"><%= product.detail %></textarea>
+                        </div>
                     </div>
-                    <table width="300" cellspacing="1" cellpadding="1">
-                        <tbody>
-                            <tr>
-                                <td>
-                                    Auction no:</td>
-                                <td id="litAuctionId">
-                                    406613403</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Item no:
-                                </td>
-                                <td>
-                                    16-668</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <h3>
-                        Product Description</h3>
-                    <p>
-                        <textarea id="detail"><%= product.detail %></textarea>
-                    </p>
-                    <p></p>
-                    <p></p>
-                    <p>
-                        <span id="ContentPlaceHolder1_lbProductFacts"></span>
-                    </p>
-                </div>
-            </div>
-        </section>
-        <section class="col-sm-3">
-            <div class="side">
-                <div class="container">
-                    <section class="timestart"></section>
-                </div>
+                            <div class="col-md-4">
+                                <h3>
+                                    History bidding</h3>
+                                <table class="table table-dark">
+                                    <thead>
+                                        <tr>
+                                            <th>Name Bidder</th>
+                                            <th>Price</th>
+                                            <th>Time</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% historybid.forEach(element => {%>
+                                        <tr>
+                                            <td><%= convertString(element.username) %></td>
+                                            <td><%= element.price %></td>
+                                            <td><%= convertTime(element.time) %></td>
+                                        </tr>    
+                                        <%})%>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                    </div>
             </div>
         </section>
     </div>

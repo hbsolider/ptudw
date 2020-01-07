@@ -1,7 +1,7 @@
 <% layout('_layouts/main') -%>
 <% block('stylesheets','<link rel="stylesheet" href="/stylesheets/profile.css" />') -%>
 <div class="container emp-profile">
-    <form method="POST" action="updateavatar" enctype="multipart/form-data">
+    <form method="POST" id="form" action="updateprofile" enctype="multipart/form-data">
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-img">
@@ -56,8 +56,8 @@
                             <div class="col-md-6">
                                 <label>Name</label>
                             </div>
-                            <div class="col-md-6">
-                                <p><%= profile.username %></p>
+                            <div class="col-md-6" >
+                                <input style="padding:0; font-weight: 800;" type="text" class="form-control" id="username" name="username" value="<%= profile.username%>" disabled>
                             </div>
                         </div>
                         <div class="row">
@@ -73,7 +73,7 @@
                                 <label>Phone</label>
                             </div>
                             <div class="col-md-6">
-                                <p><%= profile.userphone %></p>
+                                <input style="padding:0; font-weight: 800;" type="text" class="form-control" id="userphone" name="userphone" value="<%= profile.userphone%>" disabled>
                             </div>
                         </div>
                         <div class="row">
@@ -159,23 +159,7 @@
         if (input.files && input.files[0]) {
             var reader = new FileReader();
             reader.onload = function (e) {
-                $('.profile-img img').attr('src', e.target.result);
-                $(".file").html("Upload").click(()=>{
-                    $.ajax({
-                        method:"POST",
-                        url: "http://localhost:3000/user/updateavatar",
-                        success: ()=>{
-                            Swal.fire({
-                                icon:"success",
-                                text:"Success",
-                                timer:1000
-                            },()=>{
-                                location.reload();
-                                tr.hide();
-                            })
-                        }
-                    })
-                });
+                $('.profile-img img').attr('src', e.target.result)
             }
             reader.readAsDataURL(input.files[0]);
             
@@ -187,15 +171,16 @@
     function edit() {
         $(".edit").addClass('submit btn-warning')
             .html("Save");
+        $(':input').removeAttr("disabled")
+            .addClass("p-2")
         $(".submit").prop("onclick", null).off("click")
         .click(()=>{
             Swal.fire({
                 title:"Cập nhật thành công",
                 icon:"success",
                 timer:"1000"
-            },()=>{
-                location.reload();
-                tr.hide();
+            }).then(val=>{
+                $("#form").submit()
             })
         })
     }

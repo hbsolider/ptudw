@@ -17,7 +17,7 @@ module.exports ={
             } else {
                 let extArray = file.mimetype.split("/");
                 let extension = extArray[extArray.length - 1];
-                cb(null, Date.now()+'.' + extension)
+                cb(null, `${count++}`+'.' + 'jpg')
             }
 
         }

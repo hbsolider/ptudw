@@ -33,7 +33,7 @@
                     <tr class="align-items-center">
                         <th><%= cate.id %></th>
                         <th><input type="text" value="<%= cate.categoryname %>" class="form-control w-50 mx-auto"
-                                id="<%= cate.id%>" disabled /></th>
+                                id="<%=cate.id%>" disabled /></th>
                         <th><button class="btn btn-danger btn-sm" type="submit"
                                 formaction="/admin/category/delete/<%= cate.id%>"><i
                                     class="fas fa-trash-alt"></i></button>
@@ -54,7 +54,28 @@
         idd = '#' + `${id}`;
         $(idd).removeAttr('disabled');
         $('#edit' + `${id} `).removeClass('btn-primary');
-        $('#edit' + `${id} `).addClass('btn-success')
+        $('#edit' + `${id} `).addClass('btn-success');
+        $('#edit' + `${id} `).prop('onclick',null);
+        $('.btn-success').click(()=>{
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:3000/admin/updatecate",
+                data: {data: $(idd).val(), id},
+                dataType: "json",
+                success: function (response) {
+                    if(response.true){
+                        Swal.fire({
+                            title: "Success",
+                            icon: "success",
+                            timer: 1000
+                        }
+                        ).then(()=>{
+                            window.location.reload();
+                        })
+                    }
+                }
+            });
+        })
         
     }
     function test2(id){

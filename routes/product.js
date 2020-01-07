@@ -18,7 +18,7 @@ var multer = require('multer');
 var storage = require('../middleWare/multer').storage('./temp', count, false);
 var upload = require('../middleWare/multer').upload(storage).array('file', 6)
 
-router.get("/myproduct", async (req, res) => {
+router.get("/myproduct", isLog,async (req, res) => {
     const pMy = await productManage.myproduct(req.user.id);
     res.render('pages/myproduct', {
         title: 'My Product',
@@ -26,7 +26,14 @@ router.get("/myproduct", async (req, res) => {
         gb: (values) => gb.getDate(values)
     })
 });
-
+router.get("/myorder",isLog,async (req,res,next)=>{
+    const row = await productManage.myorder(req.user.id)
+    res.render('pages/myproduct', {
+        title: 'My Order',
+        all: row,
+        gb: (values) => gb.getDate(values)
+    })
+})
 router.get("/", async (req, res, next) => {
     var jsonGet = {};
     jsonGet = req.query;
@@ -39,42 +46,40 @@ router.get("/", async (req, res, next) => {
     if (page < 1) page = 1;
     const offset = (page - 1) * limit;
     var sql = "select * from product";
-    
-    
     if (typeof cat != 'undefined') {
         sql += ` where category = ${cat}`;
-       
+
     } else if (typeof searchInput != 'undefined') {
         sql += ` where nameProduct like ('%${searchInput}%')`;
-        
+
     }
     console.log(sql);
     for (const key in jsonGet) {
         if (key === "endDate" && jsonGet[key] === "true") {
-          sql += " ORDER BY timeExist DESC";
+            sql += " ORDER BY timeExist DESC";
         } else if (key === "priceASC" && jsonGet[key] === "true") {
-          sql += " ORDER BY priceStart ASC";
+            sql += " ORDER BY priceStart ASC";
         } else if (key === "priceASC" && jsonGet[key] === "false") {
-          sql += " ORDER BY priceStart DESC";
+            sql += " ORDER BY priceStart DESC";
         }
-      }
+    }
     sql += ` limit ${config.paginate.limit} offset ${offset}`
     console.log(sql);
     let [total, rows] = await Promise.all([
         productManage.count(),
         productManage.pageBySort(sql)
     ])
-    
+
     let nPages = Math.floor(total / limit);
     if (total % limit > 0) nPages++;
     for (i = 1; i <= nPages; i++) {
-       
+
         urlParams.page = i;
         let query = "?";
         for (let key in urlParams) {
-            query += key + "=" + urlParams[key] +"&";
+            query += key + "=" + urlParams[key] + "&";
         }
-        query = query.slice(0,-1);
+        query = query.slice(0, -1);
         page_numbers.push({
             value: query,
             isCurrentPage: i === +page
@@ -101,12 +106,32 @@ router.get("/id=:id", async (req, res, next) => {
     var id = req.params.id;
     if (id === "add") return next()
     const product = await productManage.productbyId(id);
+    if(product.length>0){
+        dat = moment(product[0].dateUp).format("YYYY-MM-DD hh:mm:ss").valueOf();
+    date = moment(dat).add(7,'days')
+    date2 = moment().format('YYYY-MM-DD hh:mm:ss')
+    relativetime = moment(date).fromNow(true);
+    if(moment(date).isSame(date2)){
+        await productManage.updateStatus(id);
+        const row = productManage.findbyID(id);
+        //up date nguoi thang
+        winner = {
+            idWinner: row[0].idBidderCurrent
+        }
+        await productManage.updateWinner(id,winner);
+    }
+    }
+    
+    //check = moment(datenew,"YYYY-DD-MM hh:mm:ss").fromNow();
+    
     const rows = await productManage.namebidCurrent(id);
-    let name
+    const historybid = await productManage.gethistorybyID(id);
+    const image = await productManage.loadimagebyId(id);
+    let name;
     if (rows.length != 0) {
         var tmp = rows[0].username;
-        for(i =0 ;i <tmp.length/2-1;i++){
-            tmp = tmp.replace(tmp[i],'*');
+        for (i = 0; i < tmp.length / 2 - 1; i++) {
+            tmp = tmp.replace(tmp[i], '*');
         }
         name = tmp
     } else {
@@ -117,7 +142,12 @@ router.get("/id=:id", async (req, res, next) => {
         title: product.nameProduct,
         empty: product.length === 1,
         product: product[0],
-        namebidCurrent: name
+        namebidCurrent: name,
+        historybid,
+        convertString: (string)=>convertString(string),
+        convertTime: (time) => convertTime(time),
+        image,
+        date: relativetime
     });
 })
 //các thao tác liên quan đến sản phẩm
@@ -169,6 +199,8 @@ router.post("/add", isLog, (req, res, next) => {
             });
 
             const result = await productManage.add(newProduct);
+            index = result.insertId;
+            console.log(result)
             if (result.length == 0) {
                 req.flash('error', 'Thêm thất bại');
                 return res.redirect('/product/add');
@@ -176,7 +208,7 @@ router.post("/add", isLog, (req, res, next) => {
                 req.files.forEach(async (e) => {
                     var image = {
                         filename: e.filename,
-                        idproduct: 1
+                        idproduct: index
                     };
                     const result = await productManage.addimage(image);
                 })
@@ -209,6 +241,15 @@ router.post('/bid', async (req, res, next) => {
     if (ranking[0].ranking < 8) return res.json({
         ranking: false
     });
+    entity={
+        idbidder: req.user.id,
+        idseller: product[0].idSeller,
+        idproduct: product[0].id
+    }
+    const checkdeny = await User.checkdeny(entity);
+    if(checkdeny.length>0){
+        return res.json({deny:true})
+    }
     return res.json({
         confirm: true,
         nowprice: product[0].nowprice
@@ -226,14 +267,14 @@ router.post('/confirmbid', async (req, res, next) => {
     }
     await productManage.updateBid(entity)
     rows = await User.findbyID(req.user.id);
-    notifi={
-        idseller:req.body.idseller,
+    notifi = {
+        idseller: req.body.idseller,
         idbidder: req.user.id,
         idproduct: req.body.id,
         status: 0
     }
     await User.addnotify(notifi);
-    mail.bidderAnnouce(rows[0].email,req.body.nameproduct,price);
+    mail.bidderAnnouce(rows[0].email, req.body.nameproduct, price);
     return res.json({
         success: true
     });
@@ -248,11 +289,15 @@ router.post('/addtolist', async (req, res, next) => {
         const list = await User.getmylist(req.user.id);
         var idproduct = req.body.idproduct;
         check = await productManage.productbyId(idproduct);
-        if(check[0].idSeller===req.user.id) return res.json({isowner: true});
+        if (check[0].idSeller === req.user.id) return res.json({
+            isowner: true
+        });
         if (list.length != 0) {
             for (i = 0; i < list.length; i++) {
-                if(list[i].idproduct===parseInt(req.body.idproduct)){
-                    return res.send({inlist: true})
+                if (list[i].idproduct === parseInt(req.body.idproduct)) {
+                    return res.send({
+                        inlist: true
+                    })
                 }
             }
             listitem = {
@@ -284,4 +329,17 @@ function deleteTemp() {
         console.log('deleted temp');
     })
 }
+
+function convertString(name) {
+    var tmp = name;
+    for (i = 0; i < tmp.length / 2 - 1; i++) {
+        tmp = tmp.replace(tmp[i], '*');
+    }
+    return tmp;
+}
+function convertTime(time){
+    tmp = moment(time).format('YYYY/MM/DD hh:mm:ss');
+    return tmp;
+}
+
 module.exports = router;

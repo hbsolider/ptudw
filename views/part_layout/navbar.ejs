@@ -7,7 +7,7 @@
       <form class="form-inline my-2 mr-4" method="GET" action="/product"  onsubmit="return clearBoxes()">
         <input class="form-control mr-sm-2 rounded-pill" id="searchInput" name="searchInput" type="search"
           aria-describedby="inputGroup-sizing-sm" placeholder="Search" aria-label="Search">
-        <button class="btn-danger" type="submit" onclick="searchChange()"><i class="fa fa-search" aria-hidden="true"></i></button>
+        <button class="btn-danger" style="visibility: hidden;" type="submit" onclick="searchChange()"><i class="fa fa-search" aria-hidden="true"></i></button>
       </form>
       <div class="nav-user align-middle ml-4 ml-auto">
         <% if (typeof user != "undefined") { %>
@@ -77,9 +77,17 @@
         <li class="nav-item hvr-underline-from-center">
           <a class="nav-link " href="#">hot deal</a>
         </li>
-        <li class="nav-item hvr-underline-from-center">
-          <a class="nav-link " href="/product/myproduct">my product</a>
-        </li>
+        <% if (typeof user != "undefined") { %>
+          <li class="nav-item hvr-underline-from-center">
+            <a class="nav-link " href="/product/myorder">my order</a>
+          </li>
+          <%if (user.permission != 0) {%>
+            <li class="nav-item hvr-underline-from-center">
+            <a class="nav-link " href="/product/myproduct">my product</a>
+          </li>
+          <%}%>
+        <%}%>
+
         <li class="nav-item hvr-underline-from-center">
           <a class="nav-link" href="/about">about</a>
         </li>

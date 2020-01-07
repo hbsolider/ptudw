@@ -11,31 +11,16 @@ const bcrypt = require('bcryptjs');
 const mail = require('../middleWare/mail');
 //up load avatar
 var storage = require('../middleWare/multer').storage('./temp', null, true);
-var upload = require('../middleWare/multer').upload(storage).fields([{
-  name: 'avatar',
-  maxCount: 1
-}]);
-
-router.post('/updateavatar', islog, (req, res, next) => {
-  upload(req, res, (err) => {
-    if (err instanceof multer.MulterError) {
-      console.log("Loi upload");
-      return;
-    } else if (err) {
-      console.log("have problem");
-      return;
-    }
-    var newDir = './public/avatar/' + `${req.user.id}`;
-    fse.copy('./temp', newDir, err => {
-      if (err) return console.error(err)
-      else {
-        console.log('success!');
-        //deleteTemp('./temp');
-      }
-
-    })
-    return res.redirect('/user/profile')
-  })
+var upload = require('../middleWare/multer').upload(storage).single('avatar')
+router.get('/',(req,res,next)=>{
+  res.redirect("/user/profile");
+})
+router.post('/updateprofile',upload,async(req, res, next) => {
+    resutl = await User.updateProfile(req.body,req.user.id)
+    row = await User.findbyID(req.user.id)
+    req.session.profile.username= row[0].username;
+    req.session.profile.userphone= row[0].userphone;
+    res.redirect('/user/profile');
 })
 // user method
 router.get('/signin', function (req, res, next) {
@@ -101,7 +86,6 @@ router.get('/', function (req, res, next) {
 
 //create notify
 router.post('/updateseller', async (req, res, next) => {
-
   var result = await User.updatePer(req.body);
   res.send(result);
 })
@@ -146,6 +130,13 @@ router.post('/accept',async(req,res,next)=>{
 })
 router.post('/deny',async(req,res,next)=>{
   mail.denyBidder(req.body.email,req.body.nameProduct);
+  entity= {
+    idbidder: parseInt(req.body.id),
+    idseller: req.user.id,
+    idproduct: parseInt(req.body.idproduct)
+  }
+  console.log(entity)
+  await User.adddeny(entity);
   //update status trong notify
   const result=await User.updateNoti(req.body.id,req.user.id,2);
   res.send({success: true})

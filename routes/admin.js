@@ -50,4 +50,9 @@ router.get('/ajaxgetnotify',async(req,res,next)=>{
         row: row
     })
 })
+//update category
+router.post('/updatecate',async(req,res,next)=>{
+    const result = mCategory.update(parseInt(req.body.id),req.body.data);
+    res.send({true:true});
+})
 module.exports = router;

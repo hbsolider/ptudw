@@ -61,7 +61,6 @@ app.use(async(req, res, next)=> {
     req.session.list=[];
     req.session.list = result;
     res.locals.list = req.session.list;
-
     res.locals.user = req.user;
     res.locals.authenticated = ! req.user.anonymous;
   }
